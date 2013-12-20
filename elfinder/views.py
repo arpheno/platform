@@ -12,7 +12,11 @@ def index(request, coll_id):
         FileCollection.
     """
     collection = FileCollection.objects.get(pk=coll_id)
-    return render_to_response("elfinder.html",
+    if request.is_ajax():
+        template = 'elfinder-partial.html'
+    else:
+        template = 'elfinder.html'
+    return render_to_response(template,
                               {'coll_id': collection.id},
                               RequestContext(request))
 def materials(request):

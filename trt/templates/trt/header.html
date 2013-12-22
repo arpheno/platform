@@ -15,4 +15,21 @@
     <li>
     <a href="http://eestec.net/contact/">Contact</a>
     </li>
+    {% if user.is_authenticated %}
+    <li>
+    <a> My Account </a>
+    </li>
 </ul>
+{% else %}
+<li>
+<div id="login">
+    <form method="post" action="{% url login %}">
+        {% csrf_token %}
+        <input type="text" name="username" value="" placeholder="Username or Email">
+        <input type="password" name="password" value="" placeholder="Password">
+        <input type="submit" name="commit" value="Login">
+    </form>
+</div>
+</li>
+</ul>
+{% endif %}

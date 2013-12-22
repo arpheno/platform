@@ -20,7 +20,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PROJECT_ROOT, 'example_project.db'),                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_ROOT, 'data.db'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -108,10 +108,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'example_project.urls'
+ROOT_URLCONF = 'platform.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'example_project.wsgi.application'
+WSGI_APPLICATION = 'platform.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -130,7 +130,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'test_app',
     'trt',
     'elfinder'
 )
@@ -178,8 +177,8 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'alias' : 'Trainings',
                     'id' : 'lft',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'trainings'),
-                    'URL' : '%strainings/' % settings.MEDIA_URL,
+                    'path' : join(MEDIA_ROOT, u'trainings'),
+                    'URL' : '%strainings/' % MEDIA_ROOT,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
                     'uploadOrder' : ['deny', 'allow'],
@@ -191,7 +190,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'alias' : 'Resources',
                     'id' : 'lfr',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'resources'),
+                    'path' : join(MEDIA_ROOT, u'resources'),
                     'URL' : '%sresources/' % settings.MEDIA_URL,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
@@ -204,7 +203,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'alias' : 'New Files',
                     'id' : 'lfs',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'staging'),
+                    'path' : join(MEDIA_ROOT, u'staging'),
                     'URL' : '%sstaging/' % settings.MEDIA_URL,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
@@ -217,7 +216,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'alias' : 'Internal',
                         'id' : 'lfi',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'internal'),
+                        'path' : join(MEDIA_ROOT, u'internal'),
                         'URL' : '%sinternal/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
@@ -236,7 +235,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'id' : 'lfp',
                         'id' : 'lfp',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'public'),
+                        'path' : join(MEDIA_ROOT, u'public'),
                         'URL' : '%spublic/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
@@ -254,7 +253,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'alias' : 'Trainings',
                     'id' : 'lft',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'trainings'),
+                    'path' : join(MEDIA_ROOT, u'trainings'),
                     'URL' : '%strainings/' % settings.MEDIA_URL,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
@@ -267,7 +266,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'alias' : 'Resources',
                     'id' : 'lfr',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'resources'),
+                    'path' : join(MEDIA_ROOT, u'resources'),
                     'URL' : '%sresources/' % settings.MEDIA_URL,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
@@ -280,7 +279,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'alias' : 'New Files',
                     'id' : 'lfs',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'staging'),
+                    'path' : join(MEDIA_ROOT, u'staging'),
                     'URL' : '%sstaging/' % settings.MEDIA_URL,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
@@ -293,7 +292,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'alias' : 'Internal',
                         'id' : 'lfi',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'internal'),
+                        'path' : join(MEDIA_ROOT, u'internal'),
                         'URL' : '%sinternal/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
@@ -306,7 +305,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'alias' : 'Public',
                         'id' : 'lfp',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'public'),
+                        'path' : join(MEDIA_ROOT, u'public'),
                         'URL' : '%spublic/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
@@ -330,7 +329,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         }],
                     'id' : 'lft',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'trainings'),
+                    'path' : join(MEDIA_ROOT, u'trainings'),
                     'URL' : '%strainings/' % settings.MEDIA_URL,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
@@ -349,7 +348,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         }],
                     'id' : 'lfr',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'resources'),
+                    'path' : join(MEDIA_ROOT, u'resources'),
                     'URL' : '%sresources/' % settings.MEDIA_URL,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
@@ -362,7 +361,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'alias' : 'New Files',
                     'id' : 'lfs',
                     'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(settings.MEDIA_ROOT, u'staging'),
+                    'path' : join(MEDIA_ROOT, u'staging'),
                     'URL' : '%sstaging/' % settings.MEDIA_URL,
                     'uploadAllow' : ['all',],
                     'uploadDeny' : ['all',],
@@ -380,7 +379,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                             }],
                         'id' : 'lfi',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'internal'),
+                        'path' : join(MEDIA_ROOT, u'internal'),
                         'URL' : '%sinternal/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
@@ -399,7 +398,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                             }],
                         'id' : 'lfp',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'public'),
+                        'path' : join(MEDIA_ROOT, u'public'),
                         'URL' : '%spublic/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
@@ -423,7 +422,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                             }],
                         'id' : 'lfi',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'internal'),
+                        'path' : join(MEDIA_ROOT, u'internal'),
                         'URL' : '%sinternal/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
@@ -442,7 +441,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                             }],
                         'id' : 'lfp',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'public'),
+                        'path' : join(MEDIA_ROOT, u'public'),
                         'URL' : '%spublic/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
@@ -466,7 +465,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                             }],
                         'id' : 'lfp',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(settings.MEDIA_ROOT, u'public'),
+                        'path' : join(MEDIA_ROOT, u'public'),
                         'URL' : '%spublic/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],

@@ -1,25 +1,37 @@
+<script type="text/javascript">
+    function linkbutton(name){
+        $("#button-"+name).click(function(){
+                $("#contents").load(name);
+                });
+    };
+$(function(){
+        linkbutton("materials");
+        linkbutton("account");
+        linkbutton("events");
+        linkbutton("history");
+        linkbutton("news");
+        linkbutton("contact");
+});
+</script>
 <ul id="menu-header-menu" class="menu">
     <li>
-    <a href="http://eestec.net/category/news/">News</a>
+    <a id="button-news">News</a>
     </li>
     <li>
-    <a href="http://eestec.net/workshops-and-exchanges/">Events</a>
+    <a id="button-events">Events</a>
     </li>
     <li>
-    <a href="http://eestec.net/about-eestec/">History</a>
+    <a id="button-history">History</a>
     </li>
     <li>
-    <script>
-        function myfunc(){$("#contents").load("materials");}
-    </script>
-    <a onClick="myfunc()">Materials</a>
+    <a id="button-materials">Materials</a>
     </li>
     <li>
-    <a href="http://eestec.net/contact/">Contact</a>
+    <a id="button-contact">Contact</a>
     </li>
     {% if user.is_authenticated %}
     <li>
-    <a href="{% url account %}"> My Account </a>
+    <a id="button-account">My Account </a>
     </li>
     <li>
     <a href="{% url logout %}">  Logout </a>

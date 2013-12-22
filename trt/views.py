@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from elfinder.views import ElfinderConnectorView
+import logging
+log = logging.getLogger(__name__)
 def index(request):
     return render(request, 'trt/index.html')
 def header(request):
@@ -10,6 +12,7 @@ def materials(request):
     return render(request, 'trt/elfinder.html')
 def connector(request):
     connector_view=ElfinderConnectorView.as_view()
+    log.debug(request.user.is_superuser)
     if request.user.is_superuser:
         response=connector_view(request,optionset="admin",start_path="default")
     elif request.user.is_staff:

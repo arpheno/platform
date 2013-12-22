@@ -1,7 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from elfinder.views import ElfinderConnectorView
 
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+def manage_account(request):
+    return
+def logout(request):
+    auth_logout(request)
+    return redirect('/trt/')
 def login(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -9,6 +14,7 @@ def login(request):
     if user is not None:
         if user.is_active:
             auth_login(request, user)
+            return redirect('/trt/')
             return render(request, 'trt/index.html')
             # Redirect to a success page.
         else:

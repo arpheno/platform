@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from trt.views import materials,connector,index,header
-from trt.views import login
+from trt.views import login, logout, manage_account
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -10,6 +10,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', index),
     url(r'^login/', login, name="login"),
+    url(r'^logout/', logout, name="logout"),
+    url(r'^account/', manage_account, name="account"),
     url(r'^header/$', header),
     url(r'^materials/$', materials),
     url(r'^connector/$', connector, name="trtconnector"),

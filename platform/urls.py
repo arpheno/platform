@@ -2,18 +2,14 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
+from views import login, logout, manage_account
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'example_project.views.home', name='home'),
-    # url(r'^example_project/', include('example_project.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^trt/', include('trt.urls')),
+    url(r'^login/', login, name="login"),
+    url(r'^logout/', logout, name="logout"),
+    url(r'^account/', manage_account, name="account"),
 )
 
 if settings.DEBUG:

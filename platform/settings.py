@@ -99,14 +99,14 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+        'django.middleware.common.CommonMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        # Uncomment the next line for simple clickjacking protection:
+        # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        )
 
 ROOT_URLCONF = 'platform.urls'
 
@@ -114,25 +114,26 @@ ROOT_URLCONF = 'platform.urls'
 WSGI_APPLICATION = 'platform.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+        # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+        # Always use forward slashes, even on Windows.
+        # Don't forget to use absolute paths, not relative paths.
+        )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'trt',
-    'elfinder'
-)
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.sites',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        # Uncomment the next line to enable the admin:
+        'django.contrib.admin',
+        'django.contrib.staticfiles',
+        # Uncomment the next line to enable admin documentation:
+        # 'django.contrib.admindocs',
+        'trt',
+        'elfinder'
+        )
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -140,50 +141,50 @@ INSTALLED_APPS = (
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'standard': {
-            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
-        },
-    },
-    'handlers': {
-        'null': {
-            'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
-        },
-        'logfile': {
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_ROOT + "/logfile",
-            'maxBytes': 50000,
-            'backupCount': 2,
-            'formatter': 'standard',
-        },
-        'console':{
-            'level':'INFO',
-            'class':'logging.StreamHandler',
-            'formatter': 'standard'
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers':['console'],
-            'propagate': True,
-            'level':'WARN',
-        },
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-        'trt': {
-            'handlers': ['console', 'logfile'],
-            'level': 'DEBUG',
-        },
-    }
-}
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'standard': {
+                'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+                'datefmt' : "%d/%b/%Y %H:%M:%S"
+                },
+            },
+        'handlers': {
+            'null': {
+                'level':'DEBUG',
+                'class':'django.utils.log.NullHandler',
+                },
+            'logfile': {
+                'level':'DEBUG',
+                'class':'logging.handlers.RotatingFileHandler',
+                'filename': PROJECT_ROOT + "/logfile",
+                'maxBytes': 50000,
+                'backupCount': 2,
+                'formatter': 'standard',
+                },
+            'console':{
+                'level':'INFO',
+                'class':'logging.StreamHandler',
+                'formatter': 'standard'
+                },
+            },
+        'loggers': {
+            'django': {
+                'handlers':['console'],
+                'propagate': True,
+                'level':'WARN',
+                },
+            'django.db.backends': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+                'propagate': False,
+                },
+            'trt': {
+                'handlers': ['console', 'logfile'],
+                'level': 'DEBUG',
+                },
+            }
+        }
 
 
 #ELFINDER STUFF
@@ -235,18 +236,18 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'archivers' : {},
                     },
                 {
-                        'alias' : 'Internal',
-                        'id' : 'lfi',
-                        'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(MEDIA_ROOT, u'internal'),
-                        'URL' : '%sinternal/' % settings.MEDIA_URL,
-                        'uploadAllow' : ['all',],
-                        'uploadDeny' : ['all',],
-                        'uploadOrder' : ['deny', 'allow'],
-                        'uploadMaxSize' : '128m',
-                        'accessControl' : fs_standard_access,
-                        'archivers' : {},
-                        },
+                    'alias' : 'Internal',
+                    'id' : 'lfi',
+                    'driver' : ElfinderVolumeLocalFileSystem,
+                    'path' : join(MEDIA_ROOT, u'internal'),
+                    'URL' : '%sinternal/' % settings.MEDIA_URL,
+                    'uploadAllow' : ['all',],
+                    'uploadDeny' : ['all',],
+                    'uploadOrder' : ['deny', 'allow'],
+                    'uploadMaxSize' : '128m',
+                    'accessControl' : fs_standard_access,
+                    'archivers' : {},
+                    },
                 {
                         'alias' : 'Public',
                         'attributes' : [{
@@ -269,48 +270,48 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                 ]#end roots
     },
         'staff' : {
-            'debug' : False, #optionally set debug to True for additional debug messages
-            'roots' : [
-                {
-                    'alias' : 'Trainings',
-                    'id' : 'lft',
-                    'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(MEDIA_ROOT, u'trainings'),
-                    'URL' : '%strainings/' % settings.MEDIA_URL,
-                    'uploadAllow' : ['all',],
-                    'uploadDeny' : ['all',],
-                    'uploadOrder' : ['deny', 'allow'],
-                    'uploadMaxSize' : '128m',
-                    'accessControl' : fs_standard_access,
-                    'archivers' : {},
-                    },
-                {
-                    'alias' : 'Resources',
-                    'id' : 'lfr',
-                    'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(MEDIA_ROOT, u'resources'),
-                    'URL' : '%sresources/' % settings.MEDIA_URL,
-                    'uploadAllow' : ['all',],
-                    'uploadDeny' : ['all',],
-                    'uploadOrder' : ['deny', 'allow'],
-                    'uploadMaxSize' : '128m',
-                    'accessControl' : fs_standard_access,
-                    'archivers' : {},
-                    },
-                {
-                    'alias' : 'New Files',
-                    'id' : 'lfs',
-                    'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(MEDIA_ROOT, u'staging'),
-                    'URL' : '%sstaging/' % settings.MEDIA_URL,
-                    'uploadAllow' : ['all',],
-                    'uploadDeny' : ['all',],
-                    'uploadOrder' : ['deny', 'allow'],
-                    'uploadMaxSize' : '128m',
-                    'accessControl' : fs_standard_access,
-                    'archivers' : {},
-                    },
-                {
+                'debug' : False, #optionally set debug to True for additional debug messages
+                'roots' : [
+                    {
+                        'alias' : 'Trainings',
+                        'id' : 'lft',
+                        'driver' : ElfinderVolumeLocalFileSystem,
+                        'path' : join(MEDIA_ROOT, u'trainings'),
+                        'URL' : '%strainings/' % settings.MEDIA_URL,
+                        'uploadAllow' : ['all',],
+                        'uploadDeny' : ['all',],
+                        'uploadOrder' : ['deny', 'allow'],
+                        'uploadMaxSize' : '128m',
+                        'accessControl' : fs_standard_access,
+                        'archivers' : {},
+                        },
+                    {
+                        'alias' : 'Resources',
+                        'id' : 'lfr',
+                        'driver' : ElfinderVolumeLocalFileSystem,
+                        'path' : join(MEDIA_ROOT, u'resources'),
+                        'URL' : '%sresources/' % settings.MEDIA_URL,
+                        'uploadAllow' : ['all',],
+                        'uploadDeny' : ['all',],
+                        'uploadOrder' : ['deny', 'allow'],
+                        'uploadMaxSize' : '128m',
+                        'accessControl' : fs_standard_access,
+                        'archivers' : {},
+                        },
+                    {
+                        'alias' : 'New Files',
+                        'id' : 'lfs',
+                        'driver' : ElfinderVolumeLocalFileSystem,
+                        'path' : join(MEDIA_ROOT, u'staging'),
+                        'URL' : '%sstaging/' % settings.MEDIA_URL,
+                        'uploadAllow' : ['all',],
+                        'uploadDeny' : ['all',],
+                        'uploadOrder' : ['deny', 'allow'],
+                        'uploadMaxSize' : '128m',
+                        'accessControl' : fs_standard_access,
+                        'archivers' : {},
+                        },
+                    {
                         'alias' : 'Internal',
                         'id' : 'lfi',
                         'driver' : ElfinderVolumeLocalFileSystem,
@@ -323,110 +324,41 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'accessControl' : fs_standard_access,
                         'archivers' : {},
                         },
-                {
-                        'alias' : 'Public',
-                        'attributes' : [{
-                            'pattern' : r'\.*',
-                            'read' : True,
-                            'write': True,
-                            }],
-                        'id' : 'lfp',
-                        'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(MEDIA_ROOT, u'public'),
-                        'URL' : '%spublic/' % settings.MEDIA_URL,
-                        'uploadAllow' : ['all',],
-                        'uploadDeny' : ['all',],
-                        'uploadOrder' : ['deny', 'allow'],
-                        'uploadMaxSize' : '128m',
-                        'accessControl' : fs_standard_access,
-                        'archivers' : {},
-                        },
-                ]#end roots
+                    {
+                            'alias' : 'Public',
+                            'attributes' : [{
+                                'pattern' : r'\.*',
+                                'read' : True,
+                                'write': True,
+                                }],
+                            'id' : 'lfp',
+                            'driver' : ElfinderVolumeLocalFileSystem,
+                            'path' : join(MEDIA_ROOT, u'public'),
+                            'URL' : '%spublic/' % settings.MEDIA_URL,
+                            'uploadAllow' : ['all',],
+                            'uploadDeny' : ['all',],
+                            'uploadOrder' : ['deny', 'allow'],
+                            'uploadMaxSize' : '128m',
+                            'accessControl' : fs_standard_access,
+                            'archivers' : {},
+                            },
+                    ]#end roots
     },
         'trainer' : {
-            'debug' : False, #optionally set debug to True for additional debug messages
-            'roots' : [
-                {
-                    'alias' : 'Trainings',
-                    'attributes' : [{
-                        'pattern' : r'.*',
-                        'read' : True,
-                        'write': False,
-                        'locked' : True
-                        }],
-                    'id' : 'lft',
-                    'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(MEDIA_ROOT, u'trainings'),
-                    'URL' : '%strainings/' % settings.MEDIA_URL,
-                    'uploadAllow' : ['all',],
-                    'uploadDeny' : ['all',],
-                    'uploadOrder' : ['deny', 'allow'],
-                    'uploadMaxSize' : '128m',
-                    'accessControl' : fs_standard_access,
-                    'archivers' : {},
-                    },
-                {
-                    'alias' : 'Resources',
-                    'attributes' : [{
-                        'pattern' : r',*',
-                        'read' : True,
-                        'write': False,
-                        'locked' : True
-                        }],
-                    'id' : 'lfr',
-                    'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(MEDIA_ROOT, u'resources'),
-                    'URL' : '%sresources/' % settings.MEDIA_URL,
-                    'uploadAllow' : ['all',],
-                    'uploadDeny' : ['all',],
-                    'uploadOrder' : ['deny', 'allow'],
-                    'uploadMaxSize' : '128m',
-                    'accessControl' : fs_standard_access,
-                    'archivers' : {},
-                    },
-                {
-                    'alias' : 'New Files',
-                    'id' : 'lfs',
-                    'driver' : ElfinderVolumeLocalFileSystem,
-                    'path' : join(MEDIA_ROOT, u'staging'),
-                    'URL' : '%sstaging/' % settings.MEDIA_URL,
-                    'uploadAllow' : ['all',],
-                    'uploadDeny' : ['all',],
-                    'uploadOrder' : ['deny', 'allow'],
-                    'uploadMaxSize' : '128m',
-                    'accessControl' : fs_standard_access,
-                    'archivers' : {},
-                    },
-                {
-                        'alias' : 'Internal',
+                'debug' : False, #optionally set debug to True for additional debug messages
+                'roots' : [
+                    {
+                        'alias' : 'Trainings',
                         'attributes' : [{
-                            'pattern' : r'\.*',
-                            'read' : True,
-                            'write': True,
-                            }],
-                        'id' : 'lfi',
-                        'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(MEDIA_ROOT, u'internal'),
-                        'URL' : '%sinternal/' % settings.MEDIA_URL,
-                        'uploadAllow' : ['all',],
-                        'uploadDeny' : ['all',],
-                        'uploadOrder' : ['deny', 'allow'],
-                        'uploadMaxSize' : '128m',
-                        'accessControl' : fs_standard_access,
-                        'archivers' : {},
-                        },
-                {
-                        'alias' : 'Public',
-                        'attributes' : [{
-                            'pattern' : r'\.*',
+                            'pattern' : r'.*',
                             'read' : True,
                             'write': False,
                             'locked' : True
                             }],
-                        'id' : 'lfp',
+                        'id' : 'lft',
                         'driver' : ElfinderVolumeLocalFileSystem,
-                        'path' : join(MEDIA_ROOT, u'public'),
-                        'URL' : '%spublic/' % settings.MEDIA_URL,
+                        'path' : join(MEDIA_ROOT, u'trainings'),
+                        'URL' : '%strainings/' % settings.MEDIA_URL,
                         'uploadAllow' : ['all',],
                         'uploadDeny' : ['all',],
                         'uploadOrder' : ['deny', 'allow'],
@@ -434,12 +366,81 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'accessControl' : fs_standard_access,
                         'archivers' : {},
                         },
-                ]#end roots
+                    {
+                        'alias' : 'Resources',
+                        'attributes' : [{
+                            'pattern' : r',*',
+                            'read' : True,
+                            'write': False,
+                            'locked' : True
+                            }],
+                        'id' : 'lfr',
+                        'driver' : ElfinderVolumeLocalFileSystem,
+                        'path' : join(MEDIA_ROOT, u'resources'),
+                        'URL' : '%sresources/' % settings.MEDIA_URL,
+                        'uploadAllow' : ['all',],
+                        'uploadDeny' : ['all',],
+                        'uploadOrder' : ['deny', 'allow'],
+                        'uploadMaxSize' : '128m',
+                        'accessControl' : fs_standard_access,
+                        'archivers' : {},
+                        },
+                    {
+                        'alias' : 'New Files',
+                        'id' : 'lfs',
+                        'driver' : ElfinderVolumeLocalFileSystem,
+                        'path' : join(MEDIA_ROOT, u'staging'),
+                        'URL' : '%sstaging/' % settings.MEDIA_URL,
+                        'uploadAllow' : ['all',],
+                        'uploadDeny' : ['all',],
+                        'uploadOrder' : ['deny', 'allow'],
+                        'uploadMaxSize' : '128m',
+                        'accessControl' : fs_standard_access,
+                        'archivers' : {},
+                        },
+                    {
+                            'alias' : 'Internal',
+                            'attributes' : [{
+                                'pattern' : r'\.*',
+                                'read' : True,
+                                'write': True,
+                                }],
+                            'id' : 'lfi',
+                            'driver' : ElfinderVolumeLocalFileSystem,
+                            'path' : join(MEDIA_ROOT, u'internal'),
+                            'URL' : '%sinternal/' % settings.MEDIA_URL,
+                            'uploadAllow' : ['all',],
+                            'uploadDeny' : ['all',],
+                            'uploadOrder' : ['deny', 'allow'],
+                            'uploadMaxSize' : '128m',
+                            'accessControl' : fs_standard_access,
+                            'archivers' : {},
+                            },
+                    {
+                            'alias' : 'Public',
+                            'attributes' : [{
+                                'pattern' : r'\.*',
+                                'read' : True,
+                                'write': False,
+                                'locked' : True
+                                }],
+                            'id' : 'lfp',
+                            'driver' : ElfinderVolumeLocalFileSystem,
+                            'path' : join(MEDIA_ROOT, u'public'),
+                            'URL' : '%spublic/' % settings.MEDIA_URL,
+                            'uploadAllow' : ['all',],
+                            'uploadDeny' : ['all',],
+                            'uploadOrder' : ['deny', 'allow'],
+                            'uploadMaxSize' : '128m',
+                            'accessControl' : fs_standard_access,
+                            'archivers' : {},
+                            },
+                    ]#end roots
     },
         'eestecer' : {
-            'debug' : False, #optionally set debug to True for additional debug messages
-            'roots' : [
-                {
+                'debug' : False, #optionally set debug to True for additional debug messages
+                'roots' : [
+                    {
                         'alias' : 'Internal',
                         'attributes' : [{
                             'pattern' : r'\.*',
@@ -458,7 +459,7 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'accessControl' : fs_standard_access,
                         'archivers' : {},
                         },
-                {
+                    {
                         'alias' : 'Public',
                         'attributes' : [{
                             'pattern' : r'\.*',
@@ -477,12 +478,12 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'accessControl' : fs_standard_access,
                         'archivers' : {},
                         },
-                ]#end roots
-    },
+                    ]#end roots
+                },
         'anon' : {
-            'debug' : False, #optionally set debug to True for additional debug messages
-            'roots' : [
-                {
+                'debug' : False, #optionally set debug to True for additional debug messages
+                'roots' : [
+                    {
                         'alias' : 'Public',
                         'attributes' : [{
                             'pattern' : r'\.*',
@@ -501,6 +502,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                         'accessControl' : fs_standard_access,
                         'archivers' : {},
                         },
-                ]#end roots
-    },
-}#end optionsets
+                    ]#end roots
+                },
+        }#end optionsets

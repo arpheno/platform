@@ -157,8 +157,6 @@ class ElFinderConnector():
             if field in data_source:
                 if field == "targets[]":
                     self.data[field] = data_source.getlist(field)
-                elif field =="webkitRelativePath[]":
-                    self.data[field] = data_source.getlist(field)
                 else:
                     self.data[field] = data_source[field]
 

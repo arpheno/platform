@@ -1,8 +1,23 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
+from test_app.views import IndexView
+from test_app.views import testview
+from trt.views import materials,connector,index,header
+
+# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from trt import views
 admin.autodiscover()
+
 urlpatterns = patterns('',
-        url(r'^header$', views.header),
-        url(r'^$', views.index ),
-        )
+    url(r'^$', index),
+    url(r'^header/$', header),
+    url(r'^materials/$', materials),
+    url(r'^connector/$', connector, name="trtconnector"),
+)
+
+if settings.DEBUG:
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': settings.MEDIA_ROOT, }),
+    )

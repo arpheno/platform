@@ -1,13 +1,18 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import RequestContext, loader
-from django.shortcuts import render
+from elfinder.views import ElfinderConnectorView
 def index(request):
-    k=render(request, 'trt/index.html')
-    return k
+    return render(request, 'trt/index.html')
 def header(request):
-    k=render(request, 'trt/header.html')
-    return k
+    return render(request, 'trt/header.html')
+def materials(request):
+    if request.is_ajax():
+        return render(request, 'trt/elfinder-partial.html')
+    return render(request, 'trt/elfinder.html')
+def connector(request):
+    connector_view=ElfinderConnectorView.as_view()
+    if request.user.is_authenticated():
+        group = request.user.groups.all()[0].name
+        response=connector_view(request,optionset=group,start_path="default")
+    else:
+        response=connector_view(request,optionset="anon",start_path="default")
+    return response

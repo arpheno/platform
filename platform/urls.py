@@ -1,10 +1,31 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
+from test_app.views import IndexView
+from test_app.views import testview
+
+# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
-urlpatterns = patterns(
-        url(r'^materials$', include('elfinder.urls', namespace="elfinder")),
-        url(r'^elfinder/', include('elfinder.urls')),
-        url(r'^admin/', include(admin.site.urls)),
-        url(r'^materials$', include('elfinder.urls', namespace="elfinder")),
-        url(r'', include('trt.urls', namespace="trt")),
-        )
+
+urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'example_project.views.home', name='home'),
+    # url(r'^example_project/', include('example_project.foo.urls')),
+
+    # Uncomment the admin/doc line below to enable admin documentation:
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    # Uncomment the next line to enable the admin:
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', IndexView.as_view()),
+    url(r'^test/', testview),
+    url(r'^elfinder/', include('elfinder.urls')),
+    url(r'^trt/', include('trt.urls')),
+)
+
+if settings.DEBUG:
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': settings.MEDIA_ROOT, }),
+    )

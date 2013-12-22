@@ -114,6 +114,7 @@ ROOT_URLCONF = 'platform.urls'
 WSGI_APPLICATION = 'platform.wsgi.application'
 
 TEMPLATE_DIRS = (
+        PROJECT_ROOT + '/templates/',
         # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
         # Always use forward slashes, even on Windows.
         # Don't forget to use absolute paths, not relative paths.
@@ -131,7 +132,7 @@ INSTALLED_APPS = (
         'django.contrib.staticfiles',
         # Uncomment the next line to enable admin documentation:
         # 'django.contrib.admindocs',
-        'trt',
+        'materials',
         'elfinder'
         )
 

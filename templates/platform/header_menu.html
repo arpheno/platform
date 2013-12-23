@@ -15,26 +15,26 @@ $(function(){
 </script>
 <ul id="menu-header-menu" class="menu">
     <li>
-    <a id="button-news">News</a>
+    <a href="#" id="button-news">News</a>
     </li>
     <li>
-    <a id="button-events">Events</a>
+    <a href="#" id="button-events">Events</a>
     </li>
     <li>
-    <a id="button-history">History</a>
+    <a href="#" id="button-history">History</a>
     </li>
     <li>
     <a href="#" id="button-materials">Materials</a>
     </li>
     <li>
-    <a id="button-contact">Contact</a>
+    <a href="#" id="button-contact">Contact</a>
     </li>
     {% if user.is_authenticated %}
     <li>
-    <a id="button-account">My Account </a>
+    <a href="#" id="button-account">My Account </a>
     </li>
     <li>
-    <a href="{% url logout %}">  Logout </a>
+    <a href="#" href="{% url logout %}">  Logout </a>
     </li>
 </ul>
 {% else %}

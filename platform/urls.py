@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^logout/', logout, name='logout'),
     url(r'^account/', manage_account, name='account'),
     url(r'^news/', include('news.urls'), name='news'),
+    url(r'^history', include('history.urls'), name='history'),
     url(r'^contact/', contact, name='contact'),
 )
 

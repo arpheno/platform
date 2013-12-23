@@ -1,0 +1,19 @@
+{% if event_list%}
+{% for event in event_list %}
+
+<div class="post-3467 workshops_exchanges type-workshops_exchanges status-publish hentry finished">
+
+
+    <h2><a href="#">{{ event.name }}<span>{{ event.trainers }}</span></a></h2>
+    <div class="entry">
+ {{ event.description }}
+    </div>
+    <p class="postmetadata">  </p>
+    <img src="http://eestec-lj.org/wp-content/themes/neutral/img/line.png"; width=400/>
+
+    <br />
+</div>
+{% endfor %}
+{% else %}
+<p>No polls are available.</p>
+{% endif %}

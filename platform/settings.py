@@ -135,6 +135,7 @@ INSTALLED_APPS = (
         # 'django.contrib.admindocs',
         'news',
         'materials',
+        'history',
         'elfinder'
         )
 

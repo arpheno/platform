@@ -34,13 +34,13 @@ $(function(){
     <a href="#" id="button-account">My Account </a>
     </li>
     <li>
-    <a href="#" href="{% url logout %}">  Logout </a>
+    <a href="{% url 'logout' %}">  Logout </a>
     </li>
 </ul>
 {% else %}
 <li>
 <div id="login">
-    <form method="post" action="{% url login %}">
+    <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <input type="text" name="username" value="" placeholder="Username or Email">
         <input type="password" name="password" value="" placeholder="Password">

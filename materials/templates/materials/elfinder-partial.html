@@ -6,7 +6,7 @@
 <script type="text/javascript" charset="utf-8">
     $().ready(function() {
             var elf = $('#elfinder').elfinder({
-                url :'{% url trtconnector %}',
+                url :'{% url 'trtconnector' %}',
                 customData : { csrfmiddlewaretoken : '{{ csrf_token }}',  },
 }).elfinder('instance');            
 });

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-import logging
 from models import Entry
+import logging
 log = logging.getLogger(__name__)
 def index(request):
     news_list = Entry.objects.order_by('-pub_date')[:5]

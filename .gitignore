@@ -1,1 +1,3 @@
 *.pyc
+logfile
+data.db

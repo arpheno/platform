@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^login/', login, name='login'),
     url(r'^logout/', logout, name='logout'),
     url(r'^account/', manage_account, name='account'),
+    url(r'^news/', include('news.urls'), name='news'),
 )
 
 if settings.DEBUG:

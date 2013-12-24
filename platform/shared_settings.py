@@ -18,6 +18,7 @@ INSTALLED_APPS = (
         'news',
         'materials',
         'history',
+        'account',
         'elfinder'
         )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

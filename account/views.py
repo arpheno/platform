@@ -21,7 +21,7 @@ class AccountForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['first_name','last_name']
 
     def __init__(self, *args, **kwargs):
         super(AccountForm, self).__init__(*args, **kwargs)
@@ -29,11 +29,6 @@ class AccountForm(forms.ModelForm):
         if f is not None:
             f.queryset = f.queryset.select_related('content_type')
 
-    def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
-        return self.initial["password"]
 
 def out(request):
     logout(request)
@@ -55,6 +50,12 @@ def auth(request):
 class UserProfile(UpdateView):
     form_class = AccountForm
     template_name = 'account/profile.html'
+    def post(self, request, **kwargs):
+        instance = User.objects.get(username=self.request.user)
+        form = AccountForm(request.POST,instance=instance) # A form bound to the POST data
+        #if form.is_valid(): # All validation rules pass
+        form.save()
+        return redirect('/')
 
     def get(self, request, **kwargs):
         self.object = User.objects.get(username=self.request.user)

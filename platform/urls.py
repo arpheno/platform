@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
-from views import index, header, login, logout, manage_account
+from views import index, header, login, logout, Account
 from views import contact
 
 urlpatterns = patterns('',
@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^materials/', include('materials.urls'), name='materials'),
     url(r'^login/', login, name='login'),
     url(r'^logout/', logout, name='logout'),
-    url(r'^account/', manage_account, name='account'),
+    url(r'^account/', Account.as_view(), name='account'),
     url(r'^news/', include('news.urls'), name='news'),
     url(r'^history', include('history.urls'), name='history'),
     url(r'^contact/', contact, name='contact'),

@@ -12,9 +12,10 @@ def new(request):
     password = request.POST['password']
     user = User.objects.create_user(username,username, username)
     user.is_staff = True
+    user.save()
     g = Group.objects.get(name='dbteam')
     g.user_set.add(user)
-    user.save()
+    g.save()
     return redirect('/')
 
 def out(request):

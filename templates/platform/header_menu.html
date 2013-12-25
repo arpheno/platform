@@ -11,42 +11,36 @@ $(function(){
         linkbutton("historytrainings");
         linkbutton("news");
         linkbutton("contact");
-});
-</script>
-<ul id="menu-header-menu" class="menu">
+        });
+    </script>
+    <ul id="menu-header-menu" class="menu">
+        <li>
+        <a href="#" id="button-news">News</a>
+        </li>
+        <li>
+        <a href="#" id="button-historyoperational">Events</a>
+        </li>
+        <li>
+        <a href="#" id="button-historytrainings">Trainings</a>
+        </li>
+        <li>
+        <a href="#" id="button-materials">Materials</a>
+        </li>
+        <li>
+        <a href="#" id="button-contact">Contact</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+        <a href="#" id="button-account">My Account </a>
+        </li>
+        <li>
+        <a href="{% url 'logout' %}">  Logout </a>
+        </li>
+    </ul>
+    {% else %}
     <li>
-    <a href="#" id="button-news">News</a>
+    <a href="#" class="signin"> Login </a>
+    {% include "platform/login.html" %}
     </li>
-    <li>
-    <a href="#" id="button-historyoperational">Events</a>
-    </li>
-    <li>
-    <a href="#" id="button-historytrainings">Trainings</a>
-    </li>
-    <li>
-    <a href="#" id="button-materials">Materials</a>
-    </li>
-    <li>
-    <a href="#" id="button-contact">Contact</a>
-    </li>
-    {% if user.is_authenticated %}
-    <li>
-    <a href="#" id="button-account">My Account </a>
-    </li>
-    <li>
-    <a href="{% url 'logout' %}">  Logout </a>
-    </li>
-</ul>
-{% else %}
-<li>
-<div id="login">
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <input type="text" name="username" value="" placeholder="Username or Email">
-        <input type="password" name="password" value="" placeholder="Password">
-        <input type="submit" name="commit" value="Login">
-    </form>
-</div>
-</li>
 </ul>
 {% endif %}

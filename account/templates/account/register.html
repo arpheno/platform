@@ -82,11 +82,27 @@
                 $("fieldset#signup_menu").hide();
                 }
                 });
+            $("#signup").submit(function() {
+                var url = "{% url 'register' %}";
+                $.ajax({
+type: "POST",
+url: "{% url 'register' %}",
+data: $("#signup").serialize(), // serializes the form's elements.
+success: function(data){
+if(data.status=="success"){
+                $("fieldset#signup_menu").hide("slow");
+                $("fieldset#signin_menu").show("slow");
+}
 
+}
+});
+                return false; // avoid to execute the actual submit of the form.
             });
+
+});
 </script>
 <fieldset id="signup_menu">
-    <form method="post" id="signup" action="{% url 'register' %}">{% csrf_token %}
+    <form method="post" id="signup" action="">{% csrf_token %}
         <input id="username" name="username" value="" title="username" tabindex="4" placeholder="Email" type="text">
         </p>
         <p>

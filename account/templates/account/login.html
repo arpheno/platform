@@ -91,8 +91,8 @@ url: "account/login/",
 data: $("#signin").serialize(), // serializes the form's elements.
 success: function(data){
 if(data.status=="success"){
-$(".authed").show()
-$(".anon").hide()
+$(".authed").show("slow");
+$(".anon").hide("slow");
 }else if(data.status=="inactive"){
 alert("Your account has been deactivated. Please Contact the system administrator.");
 $("#signin_menu").hide("slow");

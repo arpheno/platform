@@ -17,7 +17,10 @@ def new(request):
     g = Group.objects.get(name='dbteam')
     g.user_set.add(user)
     g.save()
-    return redirect('/')
+    response_data = {}
+    response_data['status'] = 'success'
+
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 def out(request):
     logout(request)

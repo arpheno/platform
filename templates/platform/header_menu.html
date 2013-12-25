@@ -39,8 +39,12 @@ $(function(){
     </ul>
     {% else %}
     <li>
-    <a href="#" class="signin"> Login </a>
-    {% include "platform/login.html" %}
+    <a href="#" class="signup"> Register </a>
+    {% include "account/register.html" %}
+    </li>
+    <li>
+    <a href="#" class="signin"> Log In </a>
+    {% include "account/login.html" %}
     </li>
 </ul>
 {% endif %}

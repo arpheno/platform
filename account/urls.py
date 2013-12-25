@@ -1,11 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
-from views import  auth, out, UserProfile
+from views import *
 
 urlpatterns = patterns('',
         url(r'^$', UserProfile.as_view(), name="index"),
         url(r'^login/', auth, name='login'),
         url(r'^logout/', out, name='logout'),
+        url(r'^new/', new, name='register'),
         )
 
 if settings.DEBUG:

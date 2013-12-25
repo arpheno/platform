@@ -6,6 +6,14 @@ from django.views.generic import UpdateView
 from django.utils.translation import gettext as _
 
 
+def new(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = User.objects.create_user(username,username, username)
+    user.is_staff = True
+    user.save()
+    return redirect('/')
+
 def out(request):
     logout(request)
     return redirect('/')

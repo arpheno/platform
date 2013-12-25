@@ -6,30 +6,6 @@ from django.views.generic import UpdateView
 from django.utils.translation import gettext as _
 
 
-class AccountForm(forms.ModelForm):
-    username = forms.RegexField(
-        label=_("Username"), max_length=30, regex=r"^[\w.@+-]+$",
-        help_text=_("Required. 30 characters or fewer. Letters, digits and "
-            "@/./+/-/_ only."),
-        error_messages={
-            'invalid': _("This value may contain only letters, numbers and "
-                "@/./+/-/_ characters.")})
-    password = ReadOnlyPasswordHashField(label=_("Password"),
-    help_text=_("Raw passwords are not stored, so there is no way to see "
-                    "this user's password, but you can change the password "
-                    "using <a href=\"password/\">this form</a>."))
-
-    class Meta:
-        model = User
-        fields = ['first_name','last_name']
-
-    def __init__(self, *args, **kwargs):
-        super(AccountForm, self).__init__(*args, **kwargs)
-        f = self.fields.get('user_permissions', None)
-        if f is not None:
-            f.queryset = f.queryset.select_related('content_type')
-
-
 def out(request):
     logout(request)
     return redirect('/')
@@ -41,12 +17,20 @@ def auth(request):
         if user.is_active:
             login(request, user)
             return redirect('/')
-        # Redirect to a success page.
         else:
             return render(request, 'trt/login/deactivated.html')
-    # Return a 'disabled account' error message
     else:
         return render(request, 'login/invalid.html')
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','email',]
+    def __init__(self, *args, **kwargs):
+        super(AccountForm, self).__init__(*args, **kwargs)
+        f = self.fields.get('user_permissions', None)
+        if f is not None:
+            f.queryset = f.queryset.select_related('content_type')
 class UserProfile(UpdateView):
     form_class = AccountForm
     template_name = 'account/profile.html'
@@ -56,14 +40,11 @@ class UserProfile(UpdateView):
         #if form.is_valid(): # All validation rules pass
         form.save()
         return redirect('/')
-
     def get(self, request, **kwargs):
         self.object = User.objects.get(username=self.request.user)
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         context = self.get_context_data(object=self.object, form=form)
         return self.render_to_response(context)
-
     def get_object(self, queryset=None):
         return self.request.user
-# Create your views here.

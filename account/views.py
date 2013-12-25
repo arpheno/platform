@@ -5,7 +5,8 @@ from django.contrib.auth.forms import *
 from django.views.generic import UpdateView
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import Group
-
+import json
+from django.http import HttpResponse
 
 def new(request):
     username = request.POST['username']
@@ -25,14 +26,19 @@ def auth(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
+    response_data = {}
     if user is not None:
         if user.is_active:
             login(request, user)
-            return redirect('/')
+            if user.is_staff:
+                response_data['staff'] = True
+            response_data['status'] = 'success'
+            return HttpResponse(json.dumps(response_data), content_type="application/json")
         else:
-            return render(request, 'trt/login/deactivated.html')
+            response_data['status'] = 'inactive'
     else:
-        return render(request, 'login/invalid.html')
+        response_data['status'] = 'invalid'
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 class AccountForm(forms.ModelForm):
     class Meta:

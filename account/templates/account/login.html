@@ -82,15 +82,37 @@
                 $("fieldset#signin_menu").hide();
                 }
                 });
-
-            });
+            // this is the id of the form
+            $("#signin").submit(function() {
+                var url = "{% url 'login' %}";
+                $.ajax({
+type: "POST",
+url: "account/login/",
+data: $("#signin").serialize(), // serializes the form's elements.
+success: function(data){
+if(data.status=="success"){
+$(".authed").show()
+$(".anon").hide()
+}else if(data.status=="inactive"){
+alert("Your account has been deactivated. Please Contact the system administrator.");
+$("#signin_menu").hide("slow");
+}
+else{
+alert("No such combination of E-Mail and Password. Please try again");
+$(".userinput").val("");
+}
+}
+});
+                return false; // avoid to execute the actual submit of the form.
+                });
+});
 </script>
 <fieldset id="signin_menu">
-    <form method="post" id="signin" action="{% url 'login' %}">{% csrf_token %}
-        <input id="username" name="username" value="" title="username" tabindex="4" placeholder="Email" type="text">
+    <form method="post" id="signin" action="">{% csrf_token %}
+        <input class="userinput" id="username" name="username" value="" title="username" tabindex="4" placeholder="Email" type="text">
         </p>
         <p>
-        <input id="password" name="password" value="" title="password" tabindex="5" type="password" placeholder="Password">
+        <input class="userinput" id="password" name="password" value="" title="password" tabindex="5" type="password" placeholder="Password">
         </p>
         <p class="remember">
         <input id="signin_submit" value="Sign in" tabindex="6" type="submit">

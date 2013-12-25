@@ -1,3 +1,19 @@
+<style type="text/css">
+    {% if user.is_authenticated %}
+    .authed{ display:block; }
+    .anon{ display:None; }
+    {% if user.is_staff %}
+    .staffed{display:block;}
+    {% else %}
+    .staffed{display:None;}
+    {% endif %}
+    {% else %}
+    .authed{ display:None; }
+    .anon{ display:block; }
+    .staffed{display:None;}
+    {% endif %}
+
+</style>
 <script type="text/javascript">
     function linkbutton(name){
         $("#button-"+name).click(function(){
@@ -12,44 +28,38 @@ $(function(){
         linkbutton("news");
         linkbutton("contact");
         });
-    </script>
-    <ul id="menu-header-menu" class="menu">
-        <li>
-        <a href="#" id="button-news">News</a>
-        </li>
-        <li>
-        <a href="#" id="button-historyoperational">Events</a>
-        </li>
-        <li>
-        <a href="#" id="button-historytrainings">Trainings</a>
-        </li>
-        <li>
-        <a href="#" id="button-materials">Materials</a>
-        </li>
-        <li>
-        <a href="#" id="button-contact">Contact</a>
-        </li>
-        {% if user.is_authenticated %}
-        <li>
-        <a href="#" id="button-account">My Account </a>
-        </li>
-        {% if user.is_staff %}
-        <li>
-        <a href="admin/"> Administration </a>
-        </li>
-{% endif %}
-        <li>
-        <a href="{% url 'logout' %}">  Logout </a>
-        </li>
-    </ul>
-    {% else %}
+</script>
+<ul id="menu-header-menu" class="menu">
     <li>
+    <a href="#" id="button-news">News</a>
+    </li>
+    <li>
+    <a href="#" id="button-historyoperational">Events</a>
+    </li>
+    <li>
+    <a href="#" id="button-historytrainings">Trainings</a>
+    </li>
+    <li>
+    <a href="#" id="button-materials">Materials</a>
+    </li>
+    <li>
+    <a href="#" id="button-contact">Contact</a>
+    </li>
+    <li class="authed">
+    <a href="#" id="button-account">My Account </a>
+    </li>
+    <li class="staffed">
+    <a href="admin/"> Administration </a>
+    </li>
+    <li class="authed">
+    <a href="{% url 'logout' %}">  Logout </a>
+    </li>
+    <li class="anon">
     <a href="#" class="signup"> Register </a>
     {% include "account/register.html" %}
     </li>
-    <li>
+    <li class="anon">
     <a href="#" class="signin"> Log In </a>
     {% include "account/login.html" %}
     </li>
 </ul>
-{% endif %}

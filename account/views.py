@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import *
 from django.views.generic import UpdateView
 from django.utils.translation import gettext as _
+from django.contrib.auth.models import Group
 
 
 def new(request):
@@ -11,6 +12,8 @@ def new(request):
     password = request.POST['password']
     user = User.objects.create_user(username,username, username)
     user.is_staff = True
+    g = Group.objects.get(name='dbteam')
+    g.user_set.add(user)
     user.save()
     return redirect('/')
 

@@ -9439,7 +9439,7 @@ elFinder.prototype.commands.quicklook.plugins = [
 			preview = ql.preview,
 			active  = false;
 			
-		if (($.browser.safari && navigator.platform.indexOf('Mac') != -1) || $.browser.msie) {
+		if (($.browser.safari && navigator.trt.indexOf('Mac') != -1) || $.browser.msie) {
 			active = true;
 		} else {
 			$.each(navigator.plugins, function(i, plugins) {

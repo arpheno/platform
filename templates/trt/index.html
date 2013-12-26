@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head profile="http://gmpg.org/xfn/11">
 <title>EESTEC Training Team Platform</title>
-{% include "platform/head.html" %}
+{% include "trt/head.html" %}
 <script type="text/javascript">
     $(function () {
         $("#news").load("news");
@@ -22,11 +22,11 @@
     <div id="header">
         <div id="logo">
             <a href="/" id="logo_image">
-                <img src="{% static "platform/img/banner.png" %}" alt="EESTEC International" title="EESTEC International" />
+                <img src="{% static "trt/img/banner.png" %}" alt="EESTEC International" title="EESTEC International" />
             </a>
         </div>
         <div class="header_menu"> 
-            {% include "platform/header_menu.html" %}
+            {% include "trt/header_menu.html" %}
         </div>
     </div>
     <div id="contents" class="clearfix">

@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
 
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "platform.deployment_settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "trt.settings")
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

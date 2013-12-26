@@ -1,44 +1,50 @@
 {% load staticfiles %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head profile="http://gmpg.org/xfn/11">
-        <title>EESTEC Training Team Platform</title>
-        {% include "platform/head.html" %}
-        <script type="text/javascript"> $(function () { console.log("starting");$("#contents").load("news"); }); </script>
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="header">
-                <div id="logo">
-                    <a href="/" id="logo_image">
-                        <img src="{% static "platform/img/banner.png" %}" alt="EESTEC International" title="EESTEC International" />
-                    </a>
-
-                </div>
-
-                <div id="header_meta">
-                    <div id="header_search_area" style="margin-right:0;">
-                        <form method="get" id="searchform" action="http://eestec.net/">
-                            <div><input type="text" value="Search" name="s" id="search_input" onfocus="this.value=''; changefc('#333');" /></div>
-                            <div><input type="image" src="http://eestec.net/wp-content/themes/neutral/img/search_button.gif" alt="Search" title="Search" id="search_button" /></div>
-                        </form>
-
-                    </div>
-                </div><!-- END #header_meta -->
-
-                <div class="header_menu"> 
-                    {% include "platform/header_menu.html" %}
-                </div><!-- END #header -->
-            </div>
-            <div id="contents" class="clearfix"> </div>
-            <div id="footer">
-                <ul id="copyright">
-                    <li style="background:none;"><a href="/">EESTEC Training Team</a></li>
-                </ul>
-            </div>
-
+<head profile="http://gmpg.org/xfn/11">
+<title>EESTEC Training Team Platform</title>
+{% include "platform/head.html" %}
+<script type="text/javascript">
+    $(function () {
+        $("#news").load("news");
+        $("#news").show();
+        $("#contact").load("contact");
+    });
+</script>
+<style border-right-style:pe="text/css">
+    .contents{
+        display:none;
+    }
+</style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <div id="logo">
+            <a href="/" id="logo_image">
+                <img src="{% static "platform/img/banner.png" %}" alt="EESTEC International" title="EESTEC International" />
+            </a>
         </div>
-    </body>
+        <div class="header_menu"> 
+            {% include "platform/header_menu.html" %}
+        </div>
+    </div>
+    <div id="contents" class="clearfix">
+        <div class="contents" id="news"></div>
+        <div class="contents" id="account"></div>
+        <div class="contents" id="contact"></div>
+        <div class="contents" id="materials"></div>
+        <div class="contents" id="operational"></div>
+        <div class="contents" id="trainings"></div>
+    </div>
+    <div id="footer">
+        <ul id="copyright">
+            <li style="background:none;"><a href="/">EESTEC Training Team</a></li>
+        </ul>
+    </div>
+
+</div>
+</body>
 </html>
 
 

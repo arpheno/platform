@@ -1,16 +1,35 @@
-{% load staticfiles %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head profile="http://gmpg.org/xfn/11">
-        <title>EESTEC Training Team Platform</title>
-        {% include "platform/head.html" %}
-    </head>
-    <body>
-        {% include "history/partial.html" %}
-    </body>
-</html>
-
-
-
-
-
+<script type="text/javascript">
+    function TrainingEntry(evnt) {
+        var base=$("<div></div>").addClass("workshops_exchanges type-workshops_exchanges status-publish hentry finished");
+        var headline=$("<h2></h2>").html('<a href="#">'+evnt.name+'</a>');
+        var trainers=$("<div></div>").html("<span>"+evnt.trainers+"</span>");
+        var desc=$("<div></div>").text(evnt.description);
+        var bottom=$("<img>").attr('src', 'http://eestec-lj.org/wp-content/themes/neutral/img/line.png');
+        var br=$("<br/>");
+        return base.append(headline,trainers,desc,bottom,br);
+    }
+    function buildlist(which){
+        $.getJSON("history/"+which,function(data){
+            $("#"+which).html("");
+            $.each( data, function( key, val ) {
+                $("#"+which).append(TrainingEntry(val.fields));
+            });
+        })
+    }
+    function current(which){
+        $(".contents").hide();
+        $("#"+which).show();
+    }
+    $(function(){
+        buildlist("trainings");
+        buildlist("operational");
+        $("#button-historyoperational").click(function(){
+            current("trainings");
+            buildlist("operational");
+        });
+        $("#button-historytrainings").click(function(){
+            current("operational");
+            buildlist("trainings");
+        });
+    });
+</script>

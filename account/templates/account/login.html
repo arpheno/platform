@@ -77,11 +77,6 @@
             $("fieldset#signin_menu").toggle("slow");
             $("fieldset#signup_menu").hide("slow");
         });
-        $(document).mouseup(function(e) {
-            if($(e.target).$("#signin_menu").length==0) {
-                $("fieldset#signin_menu").hide();
-            }
-        });
         // this is the id of the form
         $("#signin").submit(function() {
             var url = "{% url 'login' %}";

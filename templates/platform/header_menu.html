@@ -15,29 +15,35 @@
 
 </style>
 <script type="text/javascript">
+    function current(which){
+        $(".contents").hide();
+        $("#"+which).show();
+    }
     function linkbutton(name){
         $("#button-"+name).click(function(){
-                $("#contents").load(name);
-                });
+            current(name);
+            $("#"+name).load(name);
+        });
     };
-$(function(){
+    $(function(){
         linkbutton("materials");
         linkbutton("account");
-        linkbutton("historyoperational");
-        linkbutton("historytrainings");
         linkbutton("news");
-        linkbutton("contact");
-        });
+        $("#trainings").load("history");
+        $("#button-contact").click(function(){ current("contact"); });
+        $("#button-trainings").click(function(){ current("trainings"); });
+        $("#button-operational").click(function(){ current("operational") });
+    });
 </script>
 <ul id="menu-header-menu" class="menu">
     <li>
     <a href="#" id="button-news">News</a>
     </li>
     <li>
-    <a href="#" id="button-historyoperational">Events</a>
+    <a href="#" id="button-operational">Events</a>
     </li>
     <li>
-    <a href="#" id="button-historytrainings">Trainings</a>
+    <a href="#" id="button-trainings">Trainings</a>
     </li>
     <li>
     <a href="#" id="button-materials">Materials</a>

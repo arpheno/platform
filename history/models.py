@@ -13,7 +13,6 @@ class Event(models.Model):
     date = models.DateTimeField()
     description = models.TextField()
     trainers = models.TextField()
-
     def __unicode__(self):
         return self.name
 # Create your models here.

@@ -1,37 +1,48 @@
 <script type="text/javascript">
-    function TrainingEntry(evnt) {
+    history=[];  // history[] holds the available events on the client side
+    last_modified=""; // last_modified holds the time that the client side version was created as RFC2822
+    function Entry(evnt) {
         var base=$("<div></div>").addClass("workshops_exchanges type-workshops_exchanges status-publish hentry finished");
         var headline=$("<h2></h2>").html('<a href="#">'+evnt.name+'</a>');
         var trainers=$("<div></div>").html("<span>"+evnt.trainers+"</span>");
         var desc=$("<div></div>").text(evnt.description);
         var bottom=$("<img>").attr('src', 'http://eestec-lj.org/wp-content/themes/neutral/img/line.png');
         var br=$("<br/>");
-        return base.append(headline,trainers,desc,bottom,br);
+        base.append(headline,trainers,desc,bottom,br).appendTo("#"+evnt.type);
     }
-    function buildlist(which){
-        var cmd = {"which":which};
-        $.getJSON("history/",cmd,function(data){
+    function getEvents(){
+        $.getJSON("async/history/", function(data,status,xhr){
             console.log(data);
-            $("#"+which).html("");
-            $.each( data, function( key, val ) {
-                $("#"+which).append(TrainingEntry(val.fields));
-            });
-        })
+            last_modified = xhr.getResponseHeader("Last-Modified");
+            console.log(xhr.getResponseHeader("Last-Modified"));
+            now=new Date();
+            back=new Date(Date.parse(last_modified));
+            console.log(now);
+            console.log(back);
+            history=data;
+        });
+    }
+    function buildlists(){
+        getEvents();
+        $("#training").html("");
+        $("#operational").html("");
+        $.each( history, function( key, val ) {
+            Entry(val.fields);
+        });
     }
     function current(which){
         $(".contents").hide();
         $("#"+which).show();
     }
     $(function(){
-        buildlist("training");
-        buildlist("operational");
+        buildlists();
         $("#button-operational").click(function(){
             current("operational");
-            buildlist("operational");
+        buildlists();
         });
         $("#button-training").click(function(){
             current("training");
-            buildlist("training");
+        buildlists();
         });
     });
 </script>

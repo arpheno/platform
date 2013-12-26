@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 from views import index, contact
+from django.views.generic import TemplateView
 
 urlpatterns = patterns(
     '',
@@ -11,5 +12,6 @@ urlpatterns = patterns(
     url(r'^account/', include('account.urls')),
     url(r'^materials/', include('materials.urls'), name='materials'),
     url(r'^news/', include('news.urls'), name='news'),
-    url(r'^history/', include('history.urls'), name='history'),
+    url(r'^history/', TemplateView.as_view(template_name='history/index.html'), name='history'),
+    url(r'^async/', include('async.urls')),
 )

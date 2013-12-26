@@ -1,14 +1,18 @@
-import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from models import Event
 from django.core import serializers
+from django.views.generic.base import View
 
-def operational(request):
-    data = serializers.serialize("json", Event.objects.filter(type='operational').order_by('date'))
-    return HttpResponse(data, content_type="application/json")
-def trainings(request):
-    data = serializers.serialize("json", Event.objects.filter(type='training').order_by('date'))
-    return HttpResponse(data, content_type="application/json")
-def index(request):
-    return render(request,'history/index.html')
+
+class History(View):
+
+    def get(self, request, **kwargs):
+        if "which" in request.GET:
+            return self.events(request, request.GET['which'])
+        return render(request, 'history/index.html')
+
+    def events(self, request, which):
+        events = Event.objects.filter(type=which).order_by('date')
+        data = serializers.serialize("json", events)
+        return HttpResponse(data, content_type="application/json")

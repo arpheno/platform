@@ -9,7 +9,9 @@
         return base.append(headline,trainers,desc,bottom,br);
     }
     function buildlist(which){
-        $.getJSON("history/"+which,function(data){
+        var cmd = {"which":which};
+        $.getJSON("history/",cmd,function(data){
+            console.log(data);
             $("#"+which).html("");
             $.each( data, function( key, val ) {
                 $("#"+which).append(TrainingEntry(val.fields));
@@ -21,15 +23,15 @@
         $("#"+which).show();
     }
     $(function(){
-        buildlist("trainings");
+        buildlist("training");
         buildlist("operational");
-        $("#button-historyoperational").click(function(){
-            current("trainings");
+        $("#button-operational").click(function(){
+            current("operational");
             buildlist("operational");
         });
-        $("#button-historytrainings").click(function(){
-            current("operational");
-            buildlist("trainings");
+        $("#button-training").click(function(){
+            current("training");
+            buildlist("training");
         });
     });
 </script>

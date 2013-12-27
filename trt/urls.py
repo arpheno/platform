@@ -11,7 +11,7 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^account/', include('account.urls')),
     url(r'^materials/', include('materials.urls'), name='materials'),
-    url(r'^news/', include('news.urls'), name='news'),
+    url(r'^news/', TemplateView.as_view(template_name='news/index.html') , name='news'),
     url(r'^history/', TemplateView.as_view(template_name='history/index.html'), name='history'),
     url(r'^async/', include('async.urls')),
 )

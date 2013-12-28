@@ -27,8 +27,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'serve', 'STATIC_ROOTc')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'serve')
+STATIC_URL = '/serve/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

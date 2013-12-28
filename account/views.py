@@ -12,11 +12,8 @@ def new(request):
     username = request.POST['username']
     password = request.POST['password']
     user = User.objects.create_user(username, username, password)
-    user.is_staff = True
+    user.is_active = False
     user.save()
-    g = Group.objects.get(name='dbteam')
-    g.user_set.add(user)
-    g.save()
     response_data = {}
     response_data['status'] = 'success'
     response_data = json.dumps(response_data)

@@ -88,6 +88,9 @@
                     if(data.status=="success"){
                         $(".authed").show("slow");
                         $(".anon").hide("slow");
+                        if(data.staff==true){
+                        $(".staffed").show("slow");
+                        }
                     }else if(data.status=="inactive"){
                         alert("Your account has been deactivated. Please Contact the system administrator.");
                         $("#signin_menu").hide("slow");

@@ -7,6 +7,6 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^events', history),
-    url(r'^news', news),
+    url(r'^events', history, name='eventapi'),
+    url(r'^news', news, name='nameapi'),
 )

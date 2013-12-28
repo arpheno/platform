@@ -12,24 +12,20 @@
     .anon{ display:block; }
     .staffed{display:None;}
     {% endif %}
-
 </style>
 <script type="text/javascript">
-    function current(which){
-        $(".contents").hide();
-        $("#"+which).show();
-    }
     function linkbutton(name){
         $("#button-"+name).click(function(){
             current(name);
-            $("#"+name).load(name);
+            $("#"+name).load("/"+name);
+            return false;
         });
     };
     $(function(){
         linkbutton("materials");
         linkbutton("account");
-        $("#news").load("news");
-        $("#button-contact").click(function(){ current("contact"); });
+        $("#button-news").click(function(){ current("news"); return false;});
+        $("#button-contact").click(function(){ current("contact"); return false});
     });
 </script>
 <ul id="menu-header-menu" class="menu">
@@ -52,7 +48,7 @@
     <a href="#" id="button-account">My Account </a>
     </li>
     <li class="staffed">
-    <a href="admin/"> Administration </a>
+    <a href="/admin/"> Administration </a>
     </li>
     <li class="authed">
     <a href="{% url 'logout' %}">  Logout </a>

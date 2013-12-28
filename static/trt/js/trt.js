@@ -33,4 +33,5 @@ function Page(url, rebuild){
 function current(which){
     $(".contents").hide();
     $("#"+which).show();
+    history.pushState(which,which,"/"+which+"/");
 }

@@ -1,8 +1,4 @@
 {% load staticfiles %}
-
-<link rel="stylesheet" type="text/css" media="screen" href="{% static "elfinder/css/elfinder.min.css" %}">
-<script type="text/javascript" src="{% static "elfinder/js/elfinder.full.js" %}"></script>
-
 <script type="text/javascript" charset="utf-8">
     $().ready(function() {
             var elf = $('#elfinder').elfinder({
@@ -11,6 +7,6 @@
 }).elfinder('instance');            
 });
 </script>
-
 <div id="elfinder"></div>
+
 

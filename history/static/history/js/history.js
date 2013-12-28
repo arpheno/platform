@@ -15,14 +15,16 @@ function buildtrtevents(){
     });
 }
 $(function(){
-    trtevents = new Page("async/events/", buildtrtevents);
+    trtevents = new Page("/async/events/", buildtrtevents);
     trtevents.fetch()
     $("#button-operational").click(function(){
         current("operational");
         trtevents.fetch();
+        return false;
     });
     $("#button-training").click(function(){
         current("training");
         trtevents.fetch();
+        return false;
     });
 });

@@ -22,6 +22,7 @@ INSTALLED_APPS = (
     'account',
     'elfinder',
     'gunicorn',
+    'registration',
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

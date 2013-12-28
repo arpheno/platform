@@ -17,6 +17,8 @@ def connector(request):
         response = connector_view(request, optionset="admin", start_path="default")
     elif request.user.is_staff:
         response = connector_view(request, optionset="staff", start_path="default")
+    elif "trainer" in user.groups:
+        response = connector_view(request, optionset="trainer", start_path="default")
     elif request.user.is_authenticated():
         group = request.user.groups.all()[0].name
         response = connector_view(request, optionset=group, start_path="default")

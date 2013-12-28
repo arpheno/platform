@@ -11,11 +11,14 @@ from django.http import HttpResponse
 def new(request):
     username = request.POST['username']
     password = request.POST['password']
-    user = User.objects.create_user(username, username, password)
-    user.is_active = False
-    user.save()
     response_data = {}
-    response_data['status'] = 'success'
+    try:
+        user = User.objects.create_user(username, username, password)
+        user.is_active = False
+        user.save()
+        response_data['status'] = 'success'
+    except:
+        response_data['status'] = 'failure'
     response_data = json.dumps(response_data)
     return HttpResponse(response_data, content_type="application/json")
 
@@ -37,14 +40,14 @@ def auth(request):
                 data['staff'] = True
             else:
                 data['staff'] = False
-            data['status'] = 'success'
-            data = json.dumps(data)
-            return HttpResponse(data, content_type="application/json")
+                data['status'] = 'success'
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
         else:
             data['status'] = 'inactive'
     else:
         data['status'] = 'invalid'
-    return HttpResponse(json.dumps(data), content_type="application/json")
+        return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 class AccountForm(ModelForm):

@@ -87,6 +87,8 @@
                     if(data.status=="success"){
                         $("fieldset#signup_menu").hide("slow");
                         $("fieldset#signin_menu").show("slow");
+                    }else{
+                        alert("This email is already registered.");
                     }
                 }
             });

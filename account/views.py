@@ -73,9 +73,9 @@ def auth(request):
                 data['staff'] = True
             else:
                 data['staff'] = False
-                data['status'] = 'success'
-                data = json.dumps(data)
-                return HttpResponse(data, content_type="application/json")
+            data['status'] = 'success'
+            data = json.dumps(data)
+            return HttpResponse(data, content_type="application/json")
         else:
             data['status'] = 'inactive'
             return HttpResponse(json.dumps(data), content_type="application/json")

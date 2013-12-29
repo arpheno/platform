@@ -1,11 +1,18 @@
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from models import TrtUser as User
 from django.views.generic import UpdateView
 from django.contrib.auth.models import Group
 from django.forms import ModelForm
 import json
+import string
+import random
 from django.http import HttpResponse
+from django.core.mail import send_mail
+
+
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for x in range(size))
 
 
 def new(request):
@@ -20,15 +27,33 @@ def new(request):
         return HttpResponse(response_data, content_type="application/json")
     try:
         user = User.objects.create_user(username, username, password)
+        user.registration = id_generator(30)
+        user.is_active = False
         user.save()
+    except:
+        response_data['status'] = 'failure'
+        response_data = json.dumps(response_data)
+        return HttpResponse(response_data, content_type="application/json")
+    try:
         g = Group.objects.get(name='trainer')
         g.user_set.add(user)
         g.save()
-        response_data['status'] = 'success'
     except:
-        response_data['status'] = 'failure'
+        pass
+    response_data['status'] = 'success'
+    send_mail("Registration","Please visit http://arphen.no-ip.biz/account/complete/" + user.registration + " to complete your registration.", "trtplatform@gmail.com", [username])
     response_data = json.dumps(response_data)
     return HttpResponse(response_data, content_type="application/json")
+
+
+def complete(request, ida):
+    try:
+        user = User.objects.get(registration=ida)
+    except:
+        return redirect('/')
+    user.is_active = True
+    user.save()
+    return redirect('/')
 
 
 def out(request):
@@ -53,6 +78,7 @@ def auth(request):
                 return HttpResponse(data, content_type="application/json")
         else:
             data['status'] = 'inactive'
+            return HttpResponse(json.dumps(data), content_type="application/json")
     else:
         data['status'] = 'invalid'
         return HttpResponse(json.dumps(data), content_type="application/json")

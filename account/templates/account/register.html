@@ -85,6 +85,7 @@
                 data: $("#signup").serialize(), // serializes the form's elements.
                 success: function(data){
                     if(data.status=="success"){
+                        alert("Please check your email to activate your account.");
                         $("fieldset#signup_menu").hide("slow");
                         $("fieldset#signin_menu").show("slow");
                     }else if(data.status=="failure"){

@@ -1,6 +1,6 @@
 function Entry(evnt) {
     var base = $("<div></div>").addClass("workshops_exchanges type-workshops_exchanges status-publish hentry finished");
-    var headline = $("<h2></h2>").html('<a href = "#">'+evnt.name+'</a>');
+    var headline = $("<h2></h2>").addClass("post_title").html('<a href = "#">'+evnt.name+'</a>');
     var trainers = $("<div></div>").html("<span>"+evnt.trainers+"</span>");
     var desc = $("<div></div>").text(evnt.description);
     var bottom = $("<img>").attr('src', 'http://eestec-lj.org/wp-content/themes/neutral/img/line.png');

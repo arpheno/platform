@@ -106,6 +106,7 @@ class AccountForm(ModelForm):
                   'preferred_topics': 'What are your favourite trainings?',
                   'contact': 'What are the best ways to contact you?'}
 
+
     def __init__(self, *args, **kwargs):
         super(AccountForm, self).__init__(*args, **kwargs)
         f = self.fields.get('user_permissions', None)
@@ -119,8 +120,9 @@ class UserProfile(UpdateView):
 
     def post(self, request, **kwargs):
         instance = User.objects.get(username=self.request.user)
-        form = AccountForm(request.POST, instance=instance)
+        form = AccountForm(request.POST,request.FILES, instance=instance)
         form.save()
+        import pdb;pdb.set_trace();
         return redirect('/')
 
     def get(self, request, **kwargs):

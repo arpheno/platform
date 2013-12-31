@@ -31,6 +31,7 @@ def new(request):
         user.is_active = False
         user.save()
     except:
+        raise
         response_data['status'] = 'failure'
         response_data = json.dumps(response_data)
         return HttpResponse(response_data, content_type="application/json")

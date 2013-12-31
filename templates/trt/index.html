@@ -8,9 +8,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'trt/style.css' %}"  />
 <link rel="shortcut icon" href="http://eestec.net/wp-content/themes/neutral/favicon.ico">
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'trt/jquery-ui.css' %}" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'trt/loader.css' %}" />
 <script type="text/javascript" src="{% static 'trt/js/jquery.min.js' %}" ></script>
 <script type="text/javascript" src="{% static 'trt/js/jquery-ui.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'trt/js/trt.js' %}" ></script>
+<script type="text/javascript" src="{% static 'trt/js/prefix-free.min.js' %}" ></script>
 <script type="text/javascript" src="{% static 'history/js/history.js' %}" ></script>
 <script type="text/javascript" src="{% static 'news/js/news.js' %}" ></script>
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "elfinder/css/elfinder.min.css" %}">
@@ -30,6 +32,23 @@
 </style>
 </head>
 <body>
+<div id="loader">
+  <div class="shadow"></div>
+  <div id="portalcube">
+    <div class="squares">
+      <div class="box"></div>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="circle">
+      <div class="heart"></div>
+    </div>
+  </div>
+</div>
 <div id="wrapper">
     <div id="header">
         <div id="logo">

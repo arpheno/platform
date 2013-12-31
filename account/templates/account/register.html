@@ -79,11 +79,13 @@
         });
         $("#signup").submit(function() {
             var url = "{% url 'register' %}";
+            $("#loader").show();
             $.ajax({
                 type: "POST",
                 url: "{% url 'register' %}",
                 data: $("#signup").serialize(), // serializes the form's elements.
                 success: function(data){
+                    $("#loader").hide();
                     if(data.status=="success"){
                         alert("Please check your email to activate your account.");
                         $("fieldset#signup_menu").hide("slow");

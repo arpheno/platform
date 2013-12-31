@@ -89,7 +89,22 @@ def auth(request):
 class AccountForm(ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', ]
+        fields = ['first_name',
+                  'last_name',
+                  'lc',
+                  'trainings_delivered',
+                  'profile_picture',
+                  'born_on',
+                  'join_date',
+                  'languages',
+                  'preferred_topics',
+                  'contact', ]
+        labels = {'lc': 'Local Committee',
+                  'born_on': 'Date of Birth',
+                  'join_date': 'Member of eestec since',
+                  'languages': 'Which languages do you speak?',
+                  'preferred_topics': 'What are your favourite trainings?',
+                  'contact': 'What are the best ways to contact you?'}
 
     def __init__(self, *args, **kwargs):
         super(AccountForm, self).__init__(*args, **kwargs)

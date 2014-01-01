@@ -24,6 +24,7 @@
     $(function(){
         linkbutton("materials");
         linkbutton("account");
+        linkbutton("pool");
         $("#button-news").click(function(){ current("news"); return false;});
         $("#button-contact").click(function(){ current("contact"); return false});
     });
@@ -44,11 +45,14 @@
     <li>
     <a href="#" id="button-contact">Contact</a>
     </li>
+    <li>
+    <a href="#" id="button-pool">Pool</a>
+    </li>
     <li class="authed">
     <a href="#" id="button-account">My Account </a>
     </li>
     <li class="staffed">
-    <a href="/admin/"> Administration </a>
+    <a href="/admin/"> Admin </a>
     </li>
     <li class="authed">
     <a href="{% url 'logout' %}">  Logout </a>

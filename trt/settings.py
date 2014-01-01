@@ -22,6 +22,7 @@ INSTALLED_APPS = (
     'account',
     'elfinder',
     'gunicorn',
+    'sorl.thumbnail'
 )
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

@@ -24,7 +24,7 @@ urlpatterns = patterns(
     adjusted_index('operational'),
     adjusted_index('news'),
     adjusted_index('contact'),
-
+    url(r'^pool/', include('pool.urls')),
     url(r'^admin/', include(admin.site.urls), name='admin'),
 
     url(r'^async/', include('async.urls')),

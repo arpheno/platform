@@ -79,14 +79,21 @@
         });
         $("#signup").submit(function() {
             var url = "{% url 'register' %}";
+            $("#loader").show();
             $.ajax({
                 type: "POST",
                 url: "{% url 'register' %}",
                 data: $("#signup").serialize(), // serializes the form's elements.
                 success: function(data){
+                    $("#loader").hide();
                     if(data.status=="success"){
+                        alert("Please check your email to activate your account.");
                         $("fieldset#signup_menu").hide("slow");
                         $("fieldset#signin_menu").show("slow");
+                    }else if(data.status=="failure"){
+                        alert("This email is already registered.");
+                    }else if(data.status=="notatrainer"){
+                        alert("The eestec Training Team platform is currently in beta, and only available to EESTEC trainers and EESTEC training candidates. If you are a trainer and are seeing this message, please make sure you register your account with the email adress you're registered with on the trainings@eestec.net mailing list. If the problem persists, please contact the admin at arpheno@gmail.com.");
                     }
                 }
             });

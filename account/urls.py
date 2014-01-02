@@ -1,7 +1,5 @@
-from django.conf.urls import patterns, include, url
-from django.conf import settings
-from views import *
-
+from django.conf.urls import patterns, url
+from views import UserProfile, auth, out, new, complete
 urlpatterns = patterns('',
                        url(r'^$', UserProfile.as_view(), name="index"),
                        url(r'^login/', auth, name='login'),

@@ -31,7 +31,7 @@ function Page(url, rebuild){
     }
 }
 function current(which){
+    history.pushState({"which":which},which,"/"+which+"/");
     $(".contents").hide();
     $("#"+which).show();
-    history.pushState(which,which,"/"+which+"/");
 }

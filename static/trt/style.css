@@ -45,53 +45,16 @@ h4 { color:#ee1f28;}
 
 
 /* ----- layout -------------------------------------------------------------------------------------------------------------------------------- */
-#left_col,#right_col
-{
-    border-style:solid;
-    border-color:#cecece;
-    border-width:0px;
-}
 
 #wrapper { width:1000px; margin:0 auto; }
 #header { background:url(img/header.gif) no-repeat top; }
 #contents { background:url(img/side.gif) repeat-y; clear:both; padding:0 28px; }
 #contents_CE { background:url(img/side_noside.gif) repeat-y; clear:both; padding:0 28px; }
-#left_col { float:left; display:inline; width:668px; margin:0; padding:20px 0 0 0; align:center;border-right-width:1px;}
-#left_col_CE { float:left; display:inline; width:576px; margin:0; padding:20px 0 0 0; align:center; }
-#right_col { float:left; display:inline;width:235px; margin:0; padding:20px 20px;margin-left:-1px;border-left-width:1px;}
-#right_col_CE { float:right; display:inline; width:340px; margin:0; padding:470px 0px 0 0; }
 #footer { background:url(img/footer.gif) no-repeat top; height:90px; padding:0 0 30px 0; }
-#contents_noside { background:url(img/side_noside.gif) repeat-y; clear:both; padding:60px 28px; }
-
-#right_col img{max-width:240px;}
-#right_col .workshops_exchanges{padding: 0px 0px;}
 
 
 
-.okvir_govorci {
-    background-color: #EEEEEE;
-    border: 1px solid #000;
-    border-right: 0px;
-    -moz-border-radius: 20px 0 0 20px;
-    -webkit-border-radius: 20px 0 0 20px;
-    -khtml-border-radius: 20px 0 0 20px;
-    border-radius: 20px 0 0 20px;
-    height: 1070px;
-}
 
-.okvir_govorec {
-    height: 100px;
-    padding: 15px;
-}
-
-.okvir_govorec_ime {
-    padding: 8px;
-    font-size: 18px;
-}
-
-.okvir_govorec_opis {
-    padding: 4px 0px 20px 20px;
-}
 
 a.info {
     position: relative; /*this is the key*/
@@ -148,22 +111,6 @@ a.info:hover span.ime { /*the span will display just on :hover state*/
     box-shadow: 0px 12px 23px #000;
 }
 
-.okvir_partners {
-    background-color: #FFFFFF;
-    border: 1px solid #000;
-    border-right: 0px;
-    -moz-border-radius: 20px 0 0 20px;
-    -webkit-border-radius: 20px 0 0 20px;
-    -khtml-border-radius: 20px 0 0 20px;
-    border-radius: 20px 0 0 20px;
-    padding: 10px;
-    width: 893px;
-}
-
-.okvir_partner {
-    padding: 15px;
-}
-
 
 /*#right_col { float:right; display:inline; width:266px; margin:0 27px 0 0; padding:70px 0 0 0; }*/
 /* ----- header -------------------------------------------------------------------------------------------------------------------------------- */
@@ -204,12 +151,6 @@ header menu is at the bottom of this page!
 
 
 /* ----- left_col ------------------------------------------------------------------------------------------------------------------------------ */
-.post,.workshops_exchanges { padding:0 30px; }
-#previous_next_post { padding:15px 30px; margin:0 0 20px 0; }
-#previous_next_post #previous_post a { float:left; display:block; width:231px; padding:8px 0 10px 40px; background:url(img/preview_post.gif) no-repeat left top; }
-#previous_next_post #next_post a { float:right; display:block; text-align:right; width:231px; padding:8px 40px 10px 0; background:url(img/next_post.gif) no-repeat right top; }
-#previous_next_post p { line-height:140%; margin:0; }
-.post,.workshops_exchanges .entry{ text-align: justify; }
 
 /* post title */
 .post_title { font-size:25px; margin:0; font-weight:bold; line-height:140%; padding:0; color:#ee1f28; }
@@ -286,25 +227,6 @@ header menu is at the bottom of this page!
 #side_right_ex { float:right; width:130px; padding:0; display:inline; margin:0; }
 #side_bottom_ex { clear:both; }
 
-/* calendar */
-#wp-calendar { margin:0 auto; width:100%; font-size:11px; }
-#wp-calendar th, #wp-calendar td {  padding:0; width:14%; line-height:220%; text-align:center; }
-#wp-calendar th { color:#333; }
-#wp-calendar td a, #wp-calendar td a:visited { display:block; text-decoration:none; color:#fff; background:url(img/calendar2.gif) no-repeat  center; }
-#wp-calendar td a:hover { text-decoration:none;  color:#fff; background:url(img/calendar3.gif) no-repeat  center; }
-#wp-calendar caption { padding:8px 0; }
-#wp-calendar tfoot td { border:none; padding:5px 0; }
-#wp-calendar #prev a, #wp-calendar #prev a:visited, #wp-calendar #next a, #wp-calendar #next a:visited,
-#side_middle #wp-calendar #prev a, #side_middle #wp-calendar #prev a:visited, #side_middle #wp-calendar #next a, #side_middle #wp-calendar #next a:visited
-{ text-decoration:none; background:none; color:#81aaa4; }
-#wp-calendar #prev a:hover, #wp-calendar #next a:hover,
-#side_middle #wp-calendar #prev a:hover, #side_middle #wp-calendar #next a:hover
-{ text-decoration:underline; color:#2089cc; }
-#wp-calendar td#today { color:#555; background:url(img/calendar1.gif) no-repeat  center; }
-
-#side_middle #wp-calendar td#today { background:url(img/calendar4.gif) no-repeat  center; }
-#side_middle #wp-calendar td a, #side_middle #wp-calendar td a:visited { background:url(img/calendar5.gif) no-repeat  center; }
-#side_middle #wp-calendar td a:hover { background:url(img/calendar6.gif) no-repeat  center; }
 
 /* ----- footer ------------------------------------------------------------------------------------------------------------------------------- */
 #copyright { float:left; display:inline; margin:20px 0 0 55px; padding:0 0 0 15px; background:url(img/copyright.gif) no-repeat left top; }
@@ -313,31 +235,6 @@ header menu is at the bottom of this page!
 
 #return_top { float:right; display:inline; margin:25px 55px 0 0; padding:0 0 0 15px; font-size:11px; background:url(img/arrow4.gif) no-repeat left center; }
 #return_top:hover { }
-
-
-/* ----- page ---------------------------------------------------------------------------------------------------------------------------------- */
-#page_edit { margin:0; font-size:11px; }
-
-
-/*  ------ search,archive ------------- */
-#search_result,#archive_headline { background:url(img/meta_bottom.gif) no-repeat right bottom; padding:0; width:595px; margin:-10px 0 50px 0; }
-#search_result p,#archive_headline p { background:url(img/meta_top.gif) no-repeat right top; margin:0; padding:10px 10px 10px 30px; line-height:160%; }
-#keyword { font-weight:bold; color:#2089cc; }
-.search_result_content { margin:25px 30px 25px 30px; border-left:1px solid #ccc; padding:5px 0px 0px 15px;  }
-.search_result_contents p { clear:both; }
-.read_more { padding:0 0 0 20px; }
-
-
-/* ----- page navi ----------------------------------------------------------------------------------------------------------------------------- */
-.page_navi { margin:-10px 0 50px 30px; padding:0; }
-.page_navi li { line-height:0%; display:inline; padding:0; margin:0; font-size:11px; }
-.page_navi a, .page_navi a:visited, .page_navi a:hover, .page_navi span.current,
-.page_navi span.pages, .page_navi span.extend, .page_navi span.current, .page_navi span.dots
-{ color:#777; width:30px; padding:0; margin:0 3px 0 0; display:block; float:left; text-align:center; line-height:30px; background:url(img/pager1.gif) no-repeat left top; }
-.page_navi a:hover { color:#9327a9; background:url(img/pager1.gif) no-repeat left bottom; text-decoration:none; }
-.page_navi span.current { background:url(img/pager2.gif) no-repeat left top; color:#fff; }
-
-#search_pagenavi { margin:70px 0 0 0; }
 
 
 /* ----- header-menu --------------------------------------------------------------------------------------------------------------------------- */
@@ -381,13 +278,6 @@ header menu is at the bottom of this page!
     font-size: 10px;
 }
 
-.okrogla_miza_text_format {
-    text-indent: 20px;
-    padding-left: 10px;
-}
-
-
-
 .button {
     -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
     -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -418,64 +308,9 @@ header menu is at the bottom of this page!
     top:1px;
 }
 
-.workshops_exchanges h1{margin-top:3em;}
-.workshops_exchanges h1:first-child{margin-top:0.67em;}
-
-.button.report
-{
-    margin-bottom:1em;
-    font-size:1.2em;
-}
-
-.fltlft{float:left;}
-.fltrt{float:right;}
-
-h2 span
-{
-    font-size:0.65em;
-}
-
-.center
-{
-    text-align:center;
-}
-
-.applications
-{
-    background-color:#E9E6FF;
-}
-
-.pending
-{
-    background-color:#FFFFD6;
-}
-
-.progress
-{
-    background-color:#E6FFE6;
-}
-
-.finished
-{
-    background-color:#FFEBEB;
-}
-
-.post-thumb
-{
-    margin:0 0 1em 1em;
-    float:right;
-}
-
-.read-more{white-space:nowrap;}
-
-.piro-text{padding:1em;background-color:white;}
 
 h3.entry-title a span{font-size:11px;}
 
 .center{margin-left:auto;margin-right:auto;}
 
-#calendar_button{float:right;}
 
-#right_col h2{text-transform:uppercase;}
-#right_col .metaslider.metaslider-flex{height:260px;}
-#right_col .metaslider ul.slides{height:246px;}

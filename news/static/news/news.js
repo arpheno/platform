@@ -19,5 +19,6 @@ $(function(){
     $("#button-news").click(function(){
         current("news");
         trtnews.fetch();
+        return false;
     });
 });

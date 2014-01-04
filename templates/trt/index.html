@@ -19,6 +19,13 @@
 <script type="text/javascript" src="{% static "elfinder/js/elfinder.full.js" %}"></script>
 <script type="text/javascript">
     $(function () {
+        window.addEventListener('popstate', function(event) {
+            if (event.state!= null){
+            console.log('popstate fired!');
+            $(".contents").hide();
+            $("#"+event.state['which']).show();
+            }});
+        //history.replaceState({"which":{{ target }} },{{ target }},"/{{ target }}/");
         $("#{{ target }}").show();
     {% if target == "materials" %}
         $("#materials").load("/materials");<!-- this is a dirty dirty hack-->

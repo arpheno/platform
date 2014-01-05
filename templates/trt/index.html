@@ -1,76 +1,75 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>EESTEC Training Team Platform</title>
-    <meta charset="utf-8"/>
-    <link rel="shortcut icon" href="http://eestec.net/wp-content/themes/neutral/favicon.ico">
-    <link rel="stylesheet" href="{% static 'trt/jquery-ui.css' %}" />
-    <link rel="stylesheet" href="{% static 'elfinder/css/elfinder.min.css' %}">
-    <link rel="stylesheet" href="{% static 'trt/loader.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'trt/style.css' %}" />
-    <script src="{% static 'trt/js/jquery.min.js' %}" ></script>
-    <script src="{% static 'trt/js/jquery-ui.min.js' %}"></script>
-    <script src="{% static 'trt/js/prefixfree.min.js' %}" ></script>
-    <script src="{% static 'trt/js/trt.js' %}" ></script>
-    <script src="{% static 'elfinder/js/elfinder.full.js' %}"></script>
-    <style>
-        {% if user.is_authenticated %}
-        .authed{ display:inline; }
-        {% if user.is_staff %}
-        .staffed{display:inline;}
-        {% endif %}
-        {% else %}
-        .anon{ display:inline; }
-        {% endif %}
-    </style>
-    <script>
-        $(function () {
-            //history.replaceState({"which":{{ target }} },{{ target }},"/{{ target }}/");
-            $("#{{ target }}").show();
-            {% if target == "materials" %}
-                $("#materials").load("/materials");<!-- this is a dirty dirty hack-->
+    <head>
+        <title>EESTEC Training Team Platform</title>
+        <meta charset="utf-8"/>
+        <link rel="shortcut icon" href="http://eestec.net/wp-content/themes/neutral/favicon.ico">
+        <link rel="stylesheet" href="{% static 'trt/jquery-ui.css' %}" />
+        <link rel="stylesheet" href="{% static 'elfinder/css/elfinder.min.css' %}">
+        <link rel="stylesheet" href="{% static 'trt/loader.css' %}" />
+        <link rel="stylesheet"  href="{% static 'trt/style.css' %}" />
+        <script src="{% static 'trt/js/jquery.min.js' %}" ></script>
+        <script src="{% static 'trt/js/prefixfree.min.js' %}" ></script>
+        <script src="{% static 'trt/js/trt.js' %}" ></script>
+        <script async src="{% static 'trt/js/jquery-ui.min.js' %}"></script>
+        <script async src="{% static 'elfinder/js/elfinder.full.js' %}"></script>
+        <style>
+            {% if user.is_authenticated %}
+            .authed{ display:inline; }
+            {% if user.is_staff %}
+            .staffed{display:inline;}
+            {% endif %}
+            {% else %}
+            .anon{ display:inline; }
+            {% endif %}
+        </style>
+        <script>
+            $(function () {
+                $("#{{ target }}").show();
+                {% if target == "materials" %}
+                    $("#materials").load("/materials");<!-- this is a dirty dirty hack-->
                 {% endif %}
             });
-    </script>
-</head>
-<body>
-<div id="loader">
-    <div class="shadow"></div>
-    <div id="portalcube">
-        <div class="squares">
-            <div class="box"></div>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+        </script>
+    </head>
+    <body>
+        <div id="loader">
+            <div class="shadow"></div>
+            <div id="portalcube">
+                <div class="squares">
+                    <div class="box"></div>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="circle">
+                    <div class="heart"></div>
+                </div>
+            </div>
         </div>
-        <div class="circle">
-            <div class="heart"></div>
-        </div>
-    </div>
-</div>
-    <header>
-        <img src="{% static "trt/img/banner.png" %}" alt="EESTEC International" title="EESTEC International" />
-        <nav>
-            {% include "trt/header_menu.html" %}
-        </nav>
-    </header>
-    <main class="clearfix">
-        <section id="news"></section>
-        <section id="account"></section>
-        <section id="contact">{% include "trt/contact.html" %}</section>
-        <section id="materials"></section>
-        <section id="operational"></section>
-        <section id="pool"></section>
-        <section id="training"></section>
+        <header>
+            <img src="{% static "trt/img/banner.png" %}" alt="EESTEC International" title="EESTEC International" />
+            <nav>
+                {% include "trt/header_menu.html" %}
+            </nav>
+        </header>
+        <main class="clearfix">
+            <section id="news"></section>
+            <section id="account"></section>
+            <section id="contact">{% include "trt/contact.html" %}</section>
+            <section id="materials"></section>
+            <section id="operational"></section>
+            <section id="pool"></section>
+            <section id="training"></section>
         </main>
-    <footer>
-        <ul id="copyright">
-            <li style="background:none;"><a href="/">EESTEC Training Team</a></li>
-        </ul>
-    </footer>
-</body>
+        <footer>
+            <ul id="copyright">
+                <li style="background:none;"><a href="/">EESTEC Training Team</a></li>
+            </ul>
+        </footer>
+    </body>
 </html>

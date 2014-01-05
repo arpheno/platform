@@ -15,7 +15,7 @@ function Page(url, rebuild) {
     }
     self.check = function (message, text, response) {
         console.log("Checking " + self.url + " for new data.");
-        var header = response.getResponseHeader("Last-Modified");
+            var header = response.getResponseHeader("Last-Modified");
         self.newModified = new Date(Date.parse(header));
         if (self.newModified > self.lastModified) {
             $.getJSON(url, self.hardfetch);
@@ -42,7 +42,7 @@ function Event(evnt) {
     var trainers = $("<div></div>").html("<span>"+evnt.trainers+"</span>");
     var desc = $("<div></div>").text(evnt.description);
     var bottom = $("<img>").attr('src', 'http://eestec-lj.org/wp-content/themes/neutral/img/line.png');
-    var br = $("<br/>");
+        var br = $("<br/>");
     return base.append(headline , trainers , desc , bottom , br);
 }
 
@@ -83,31 +83,31 @@ $(function () {
             $("section").hide();
             $("section#"+event.state['which']).show();
         }});
-    $(document).mouseup(function (e){
-        e.preventDefault();
-        var container = $("button.signin");
+        $(document).mouseup(function (e){
+            e.preventDefault();
+            var container = $("button.signin");
 
-        if (!container.is(e.target) // if the target of the click isn't the container...
-            && container.has(e.target).length === 0) // ... nor a descendant of the container
-        {
-            $("#signin_menu").hide("slow");
-        }
-        var con = $("button.signup");
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+                $("#signin_menu").hide("slow");
+            }
+            var con = $("button.signup");
 
-        if (!con.is(e.target) // if the target of the click isn't the container...
-            && con.has(e.target).length === 0) // ... nor a descendant of the container
-        {
-            $("#signup_menu").hide("slow");
-        }
-    });
-    //// Set up content retrieval
-    News = new Page("/async/news/", buildnews);
-    Events = new Page("/async/events/", buildevents);
-    News.fetch()
-    Events.fetch()
+            if (!con.is(e.target) // if the target of the click isn't the container...
+                && con.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+                $("#signup_menu").hide("slow");
+            }
+        });
+        //// Set up content retrieval
+        News = new Page("/async/news/", buildnews);
+        Events = new Page("/async/events/", buildevents);
+        News.fetch()
+        Events.fetch()
 
-    // Form binding
-    $("#signup").submit(function() {
+        // Form binding
+        $("#signup").submit(function() {
             $("#loader").show();
             $.ajax({
                 type: "POST",
@@ -128,8 +128,8 @@ $(function () {
             });
             return false; // avoid to execute the actual submit of the form.
         });
-    $("#signin").submit(function() {
-        console.log("LOL");
+        $("#signin").submit(function() {
+            console.log("LOL");
             $.ajax({
                 type: "POST",
                 url: "/account/login/",
@@ -139,7 +139,7 @@ $(function () {
                         $(".authed").show("slow");
                         $(".anon").hide("slow");
                         if(data.staff==true){
-                        $(".staffed").show("slow");
+                            $(".staffed").show("slow");
                         }
                     }else if(data.status=="inactive"){
                         alert("Your account has been deactivated. Please Contact the system administrator.");
@@ -153,33 +153,33 @@ $(function () {
             });
             return false; // avoid to execute the actual submit of the form.
         });
-    // Bind buttons
+        // Bind buttons
 
-    linkbutton("materials");
-    linkbutton("account");
-    linkbutton("pool");
-    $("button#contact").click(function(){
-        current("contact"); return false
-    });
-    $("button#operational").click(function () {
-        current("operational");
-        Events.fetch();
-        return false;
-    });
-    $("button#training").click(function () {
-        current("training");
-        Events.fetch();
-        return false;
-    });
-    $("button#news").click(function () {
-        current("news");
-        News.fetch();
-        return false;
-    });
-    $(".signin").click(function(e) {
-        $("fieldset#signin_menu").show("slow");
-    });
-    $("button.signup").click(function(e) {
-        $("fieldset#signup_menu").show("slow");
-    });
+        linkbutton("materials");
+        linkbutton("account");
+        linkbutton("pool");
+        $("button#contact").click(function(){
+            current("contact"); return false
+        });
+        $("button#operational").click(function () {
+            current("operational");
+            Events.fetch();
+            return false;
+        });
+        $("button#training").click(function () {
+            current("training");
+            Events.fetch();
+            return false;
+        });
+        $("button#news").click(function () {
+            current("news");
+            News.fetch();
+            return false;
+        });
+        $(".signin").click(function(e) {
+            $("fieldset#signin_menu").show("slow");
+        });
+        $("button.signup").click(function(e) {
+            $("fieldset#signup_menu").show("slow");
+        });
 });

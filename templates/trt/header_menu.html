@@ -1,68 +1,13 @@
-<style type="text/css">
-    {% if user.is_authenticated %}
-    .authed{ display:block; }
-    .anon{ display:None; }
-    {% if user.is_staff %}
-    .staffed{display:block;}
-    {% else %}
-    .staffed{display:None;}
-    {% endif %}
-    {% else %}
-    .authed{ display:None; }
-    .anon{ display:block; }
-    .staffed{display:None;}
-    {% endif %}
-</style>
-<script type="text/javascript">
-    function linkbutton(name){
-        $("#button-"+name).click(function(){
-            current(name);
-            $("#"+name).load("/"+name);
-            return false;
-        });
-    };
-    $(function(){
-        linkbutton("materials");
-        linkbutton("account");
-        linkbutton("pool");
-        $("#button-news").click(function(){ current("news"); return false;});
-        $("#button-contact").click(function(){ current("contact"); return false});
-    });
-</script>
-<ul id="menu-header-menu" class="menu">
-    <li>
-    <a href="#" id="button-news">News</a>
-    </li>
-    <li>
-    <a href="#" id="button-operational">Events</a>
-    </li>
-    <li>
-    <a href="#" id="button-training">Trainings</a>
-    </li>
-    <li>
-    <a href="#" id="button-materials">Materials</a>
-    </li>
-    <li>
-    <a href="#" id="button-contact">Contact</a>
-    </li>
-    <li>
-    <a href="#" id="button-pool">Pool</a>
-    </li>
-    <li class="authed">
-    <a href="#" id="button-account">My Account </a>
-    </li>
-    <li class="staffed">
-    <a href="/admin/"> Admin </a>
-    </li>
-    <li class="authed">
-    <a href="{% url 'logout' %}">  Logout </a>
-    </li>
-    <li class="anon">
-    <a href="#" class="signup"> Register </a>
-    {% include "account/register.html" %}
-    </li>
-    <li class="anon">
-    <a href="#" class="signin"> Log In </a>
-    {% include "account/login.html" %}
-    </li>
-</ul>
+    <button id="news">News</button>
+    <button id="operational">Events</button>
+    <button id="training">Trainings</button>
+    <button id="materials">Materials</button>
+    <button id="contact">Contact</button>
+    <button id="pool">Pool</button>
+    <button id="account" class="authed">My Account </button>
+    <button id="admin" class="staffed"> Admin </button>
+    <button id="logout" class="authed">  Logout </button>
+    <button class="signup anon"> Register
+    {% include "account/register.html" %}</button>
+    <button class="signin anon"> Log In
+    {% include "account/login.html" %}</button>

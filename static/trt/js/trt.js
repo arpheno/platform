@@ -48,7 +48,7 @@ function Event(evnt) {
 function Trainer(data){
     var base=$("<li></li>").addClass("user-image");
     var image=new Image();
-    image.src="http://127.0.0.1:800"+data.im;
+    image.src=data.im;
     var meta = $("<div></div>").addClass("comment");
     var il = $("<ul></ul>")
     $.each(data.meta, function (key, val) {

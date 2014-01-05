@@ -45,7 +45,18 @@ function Event(evnt) {
         var br = $("<br/>");
     return base.append(headline , trainers , desc , bottom , br);
 }
-
+function Trainer(data){
+    var base=$("<li></li>").addClass("user-image");
+    var image=new Image();
+    image.src="http://127.0.0.1:800"+data.im;
+    var meta = $("<div></div>").addClass("comment");
+    var il = $("<ul></ul>")
+    $.each(data.meta, function (key, val) {
+        il.append($("<li></li>").html(key + ": "+ val));
+    });
+    console.log(base.append( image, meta.append(il)))
+    return base.append( image, meta.append(il))
+}
 function New(entry) {
     var base = $("<div></div>").addClass("post");
     var headline = $("<h2></h2>").html('<a href="#">' + entry.headline + '</a>');
@@ -54,6 +65,16 @@ function New(entry) {
     var content = $("<div></div>").addClass("post_content").html(entry.message);
     var meta = $("<div></div>").addClass("post_meta").html(' <div class="post_meta"> <ul class="clearfix"> <li class="post_category"> Published in <a href="#" title="View all posts in News" rel="category tag">News</a>, <a href="#" title="View all posts in TrainingTeam" rel="category tag">Training Team</a> </li> </ul> </div>');
     return base.append(headline, pub, content, meta);
+}
+function buildpool() {
+    $("section#pool").html('<h2 class="post_title">Trainers</h2><ul></ul>');
+    $.each(Pool.container, function (key, val) {
+        console.log(val);
+        if(val.im=="None"){;
+        }else{
+        $("section#pool ul").append(new Trainer(val));
+        }
+    });
 }
 function buildnews() {
     $("section#news").empty();
@@ -103,7 +124,9 @@ $(function () {
         //// Set up content retrieval
         News = new Page("/async/news/", buildnews);
         Events = new Page("/async/events/", buildevents);
+        Pool = new Page("/async/pool/", buildpool);
         News.fetch()
+        Pool.fetch()
         Events.fetch()
 
         // Form binding
@@ -157,11 +180,14 @@ $(function () {
 
         linkbutton("materials");
         linkbutton("account");
-        linkbutton("pool");
         $("button#contact").click(function(){
             current("contact"); return false
         });
-        $("button#operational").click(function () {
+        $("button#pool").click(function () {
+            current("pool");
+            Events.fetch();
+            return false;
+        });$("button#operational").click(function () {
             current("operational");
             Events.fetch();
             return false;

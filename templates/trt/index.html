@@ -27,9 +27,9 @@
         <script>
             $(function () {
                 //history.replaceState({"which":{{ target }} },{{ target }},"/{{ target }}/");
-                $("#{{ target }}").show();
+                $("section#{{ target }}").show();
                 {% if target == "materials" %}
-                    $("#materials").load("/materials");<!-- this is a dirty dirty hack-->
+                    $("section#materials").load("/materials");<!-- this is a dirty dirty hack-->
                 {% endif %}
             });
         </script>
@@ -64,7 +64,7 @@
             <section id="contact">{% include "trt/contact.html" %}</section>
             <section id="materials"></section>
             <section id="operational"></section>
-            <section id="pool"><h2>Trainers</h2><ul></ul></section>
+            <section id="pool"></section>
             <section id="training"></section>
         </main>
         <footer>

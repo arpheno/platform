@@ -1,8 +1,8 @@
 import logging
 from django.shortcuts import render
-log = logging.getLogger(__name__)
+log = logging.getLogger('trt')
+
+
 def index(request):
-    log.debug(request.user)
+    log.debug(request.user + " requested the website.")
     return render(request, 'trt/index.html')
-def contact(request):
-    return render(request, 'trt/contact.html')

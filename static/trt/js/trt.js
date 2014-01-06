@@ -35,11 +35,11 @@ function Page(url, rebuild) {
 }
 function current(which) {
     history.pushState({"which": which}, which, "/" + which + "/");
-    $("section").hide();
-    $("section#"+which).show();
+    $("section").hide("slow");
+    $("section#"+which).show("slow");
 }
 function Event(evnt) {
-    var base = $("<article></article>").addClass("workshops_exchanges type-workshops_exchanges status-publish hentry finished");
+    var base = $("<article>").addClass("workshops_exchanges type-workshops_exchanges status-publish hentry finished");
     var headline = $("<h2></h2>").html('<a href = "#">'+evnt.name+'</a>');
     var trainers = $("<div></div>").html("<span>"+evnt.trainers+"</span>");
     var desc = $("<div></div>").text(evnt.description);
@@ -48,6 +48,7 @@ function Event(evnt) {
     return base.append(headline , trainers , desc , bottom , br);
 }
 function Trainer(data){
+    var pass=data;
     var base=$("<li></li>").addClass("user-image");
     var image=new Image();
     image.src=data.im;
@@ -56,7 +57,10 @@ function Trainer(data){
     $.each(data.meta, function (key, val) {
         il.append($("<li></li>").html(key + ": "+ val));
     });
-    console.log(base.append( image, meta.append(il)))
+    base.click(function(){
+        buildtrainer(pass);
+        current('profile');
+    });
     return base.append( image, meta.append(il))
 }
 function New(entry) {
@@ -67,10 +71,21 @@ function New(entry) {
     var meta = $("<div></div>").addClass("post_meta").html(' <div class="post_meta"> <ul class="clearfix"> <li class="post_category"> Published in <a href="#" title="View all posts in News" rel="category tag">News</a>, <a href="#" title="View all posts in TrainingTeam" rel="category tag">Training Team</a> </li> </ul> </div>');
     return base.append(headline, pub, content, meta);
 }
+function buildtrainer(data) {
+    $("section#profile").empty();
+    var base=$("<li></li>");
+    var image=new Image();
+    image.src=data.im;
+    var meta = $("<div></div>");
+    var il = $("<ul></ul>");
+    $.each(data.meta, function (key, val) {
+        il.append($("<li></li>").html(key + ": "+ val));
+    });
+    $("section#profile").append(base.append(image, il));
+}
 function buildpool() {
     $("section#pool").html('<h2 class="post_title">Trainers</h2><ul></ul>');
     $.each(Pool.container, function (key, val) {
-        console.log(val);
         if(val.im=="None"){;
         }else{
             $("section#pool ul").append(new Trainer(val));
@@ -135,7 +150,7 @@ $(function () {
             $("#loader").show();
             $.ajax({
                 type: "POST",
-                url: "{% url 'register' %}",
+                url: "/account/register/",
                 data: $("#signup").serialize(), // serializes the form's elements.
                 success: function(data){
                     $("#loader").hide();
@@ -198,7 +213,12 @@ $(function () {
             Events.fetch();
             return false;
         });
-        $("button#news").click(function () {
+        $("button#logout").click(function () {
+            current("news");
+            $("body").load("/account/logout/")
+            News.fetch();
+            return false;
+        }); $("button#news").click(function () {
             current("news");
             News.fetch();
             return false;

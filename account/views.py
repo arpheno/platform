@@ -20,21 +20,20 @@ def new(request):
     username = request.POST['username']
     password = request.POST['password']
     response_data = {}
-    if not trt.settings.DEBUG:
-        trainers=["bkawlatow@gmail.com", "erginozgun1@gmail.com", "geo.gkioka@gmail.com", "serazification@gmail.com", "goran.vukalovic@gmail.com", "shomyserbia@gmail.com", "till.schultz@haw-hamburg.de", "tanju.kahyaoglu@gmail.com", "michalwesolkowski@gmail.com", "dominic.angerer@gmail.com", "arpheno@gmail.com", "gunda.cizevska@gmail.com", "irmabalic1@gmail.com", "petko.grozdanovski@eestec-sk.org.mk", "viktorijanikolovska@gmail.com", "oliver-richter@bluewin.ch", "bococan@hotmail.com", "daviddias.p@gmail.com", "dc.develi@gmail.com", "egondzic@gmail.com", "emincica@gmail.com", "geislert@student.ethz.ch", "matic.mj@gmail.com", "vanjapancic@gmail.com", "vukica.jekic@gmail.com", "thanvrat@gmail.com", "witowski.maciej@gmail.com", "xristoskonsta@gmail.com", "milosdenic88@gmail.com", "nesatdereli@gmail.com", "tackast@yahoo.com", "jmdbo1991@gmail.com", "eemreg@gmail.com", "emilia.buhaev@eestec.ro", "igorsocec@gmail.com", "mihaela.maracine@eestec.ro", "milossavicevic@gmail.com", "milica.fcdb.stupar@gmail.com", "uzupan@gmail.com", "polec.marta@gmail.com", "christoph.t.weber@gmail.com", "cosmin.rudeanu@eestec.ro", "d.materowski@gmail.com", "kasp.piotr@gmail.com", "mk.defender@gmail.com", "dukesapen@gmail.com", "hmduc85@gmail.com", "ivan.kovacevic12@gmail.com", "lexa.caprariu@gmail.com", "tolic.aleksandar@gmail.com", "nedimhadzija@gmail.com", "smajic.nermin@gmail.com", "renata.niedziela@gmail.com", "omurcankumtepe@gmail.com", "eddincer@gmail.com", "grega.kespret@gmail.com", "greggchrysos@gmail.com", "lukailic@gmail.com", "lukalacan@gmail.com", "blaz.roser@gmail.com", "cagatay@ieee.metu.edu.tr", "ionut.sava@eestec.ro", "ivan.kechina@gmail.com", "mario.markovic1985@gmail.com", "flavia.fiscu@gmail.com", "markovic.snezana@gmail.com", "kradulaski@gmail.com", "cvetkovic.stevan@gmail.com", "denisrudonja@gmail.com", "denizea@gmail.com", "dijana.karlecik@gmail.com", "faris.nizamic@gmail.com", "fbakhtiyar@gmail.com", "ozcanhu@gmail.com", "tagikhaniyev@gmail.com", "semir.hadzimuratovic@gmail.com", "borut.ceh@gmail.com", "marijanovic@gmail.com", "marko.obrknezev@gmail.com", "aleksandra321@gmail.com", "flo@chaoflow.net", "maria.viziteu@gmail.com", "dejan.pangercic@gmail.com"]
-        if username not in trainers:
-            response_data['status'] = 'notatrainer'
-            response_data = json.dumps(response_data)
-            return HttpResponse(response_data, content_type="application/json")
-        try:
-            user = User.objects.create_user(username, username, password)
-            user.registration = id_generator(30)
-            user.is_active = False
-            user.save()
-        except:
-            response_data['status'] = 'failure'
-            response_data = json.dumps(response_data)
-            return HttpResponse(response_data, content_type="application/json")
+    trainers=["bkawlatow@gmail.com", "erginozgun1@gmail.com", "geo.gkioka@gmail.com", "serazification@gmail.com", "goran.vukalovic@gmail.com", "shomyserbia@gmail.com", "till.schultz@haw-hamburg.de", "tanju.kahyaoglu@gmail.com", "michalwesolkowski@gmail.com", "dominic.angerer@gmail.com", "arpheno@gmail.com", "gunda.cizevska@gmail.com", "irmabalic1@gmail.com", "petko.grozdanovski@eestec-sk.org.mk", "viktorijanikolovska@gmail.com", "oliver-richter@bluewin.ch", "bococan@hotmail.com", "daviddias.p@gmail.com", "dc.develi@gmail.com", "egondzic@gmail.com", "emincica@gmail.com", "geislert@student.ethz.ch", "matic.mj@gmail.com", "vanjapancic@gmail.com", "vukica.jekic@gmail.com", "thanvrat@gmail.com", "witowski.maciej@gmail.com", "xristoskonsta@gmail.com", "milosdenic88@gmail.com", "nesatdereli@gmail.com", "tackast@yahoo.com", "jmdbo1991@gmail.com", "eemreg@gmail.com", "emilia.buhaev@eestec.ro", "igorsocec@gmail.com", "mihaela.maracine@eestec.ro", "milossavicevic@gmail.com", "milica.fcdb.stupar@gmail.com", "uzupan@gmail.com", "polec.marta@gmail.com", "christoph.t.weber@gmail.com", "cosmin.rudeanu@eestec.ro", "d.materowski@gmail.com", "kasp.piotr@gmail.com", "mk.defender@gmail.com", "dukesapen@gmail.com", "hmduc85@gmail.com", "ivan.kovacevic12@gmail.com", "lexa.caprariu@gmail.com", "tolic.aleksandar@gmail.com", "nedimhadzija@gmail.com", "smajic.nermin@gmail.com", "renata.niedziela@gmail.com", "omurcankumtepe@gmail.com", "eddincer@gmail.com", "grega.kespret@gmail.com", "greggchrysos@gmail.com", "lukailic@gmail.com", "lukalacan@gmail.com", "blaz.roser@gmail.com", "cagatay@ieee.metu.edu.tr", "ionut.sava@eestec.ro", "ivan.kechina@gmail.com", "mario.markovic1985@gmail.com", "flavia.fiscu@gmail.com", "markovic.snezana@gmail.com", "kradulaski@gmail.com", "cvetkovic.stevan@gmail.com", "denisrudonja@gmail.com", "denizea@gmail.com", "dijana.karlecik@gmail.com", "faris.nizamic@gmail.com", "fbakhtiyar@gmail.com", "ozcanhu@gmail.com", "tagikhaniyev@gmail.com", "semir.hadzimuratovic@gmail.com", "borut.ceh@gmail.com", "marijanovic@gmail.com", "marko.obrknezev@gmail.com", "aleksandra321@gmail.com", "flo@chaoflow.net", "maria.viziteu@gmail.com", "dejan.pangercic@gmail.com"]
+    if username not in trainers and not trt.settings.DEBUG:
+        response_data['status'] = 'notatrainer'
+        response_data = json.dumps(response_data)
+        return HttpResponse(response_data, content_type="application/json")
+    user = User.objects.create_user(username, username, password)
+    user.registration = id_generator(30)
+    user.is_active = False
+    try:
+        user.save()
+    except IntegrityError as ie:
+        response_data['status'] = 'failure'
+        response_data = json.dumps(response_data)
+        return HttpResponse(response_data, content_type="application/json")
     try:
         g = Group.objects.get(name='trainer')
         g.user_set.add(user)
@@ -43,7 +42,11 @@ def new(request):
         pass
     response_data['status'] = 'success'
     if not trt.settings.DEBUG:
-        send_mail("Registration","Please visit http://trt.eestec.net/account/complete/" + user.registration + " to complete your registration.", "trtplatform@gmail.com", [username])
+        send_mail("Registration",
+                  "Please visit http://trt.eestec.net/account/complete/"
+                  + user.registration + " to complete your registration.",
+                  "trtplatform@gmail.com",
+                  [username])
     response_data = json.dumps(response_data)
     return HttpResponse(response_data, content_type="application/json")
 
@@ -75,9 +78,9 @@ def auth(request):
                 data['staff'] = True
             else:
                 data['staff'] = False
-            data['status'] = 'success'
-            data = json.dumps(data)
-            return HttpResponse(data, content_type="application/json")
+                data['status'] = 'success'
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
         else:
             data['status'] = 'inactive'
             return HttpResponse(json.dumps(data), content_type="application/json")

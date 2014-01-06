@@ -17,6 +17,7 @@ function Page(url, rebuild) {
         console.log("Checking " + self.url + " for new data.");
             var header = response.getResponseHeader("Last-Modified");
         self.newModified = new Date(Date.parse(header));
+        console.log(self)
         if (self.newModified > self.lastModified) {
             $.getJSON(url, self.hardfetch);
         }

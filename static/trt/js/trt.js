@@ -39,9 +39,8 @@ function current(which) {
     $("section#"+which).show();
 }
 function Event(evnt) {
-    var base = $("<div></div>").addClass("workshops_exchanges type-workshops_exchanges status-publish hentry finished");
+    var base = $("<article></article>").addClass("workshops_exchanges type-workshops_exchanges status-publish hentry finished");
     var headline = $("<h2></h2>").html('<a href = "#">'+evnt.name+'</a>');
-    headline.addClass("post_title");
     var trainers = $("<div></div>").html("<span>"+evnt.trainers+"</span>");
     var desc = $("<div></div>").text(evnt.description);
     var bottom = $("<img>").attr('src', 'http://eestec-lj.org/wp-content/themes/neutral/img/line.png');
@@ -61,11 +60,10 @@ function Trainer(data){
     return base.append( image, meta.append(il))
 }
 function New(entry) {
-    var base = $("<div></div>").addClass("post");
-    var headline = $("<h2></h2>").html('<a href="#">' + entry.headline + '</a>');
-    headline.addClass("post_title");
+    var base = $("<article></article>");
+    var headline = $("<h2></h2>").text(entry.headline)
     var pub = $("<ul></ul>").html('<li>' + entry.pub_date + '</li>');
-    var content = $("<div></div>").addClass("post_content").html(entry.message);
+    var content = $("<p></p>").addClass("post_content").html(entry.message);
     var meta = $("<div></div>").addClass("post_meta").html(' <div class="post_meta"> <ul class="clearfix"> <li class="post_category"> Published in <a href="#" title="View all posts in News" rel="category tag">News</a>, <a href="#" title="View all posts in TrainingTeam" rel="category tag">Training Team</a> </li> </ul> </div>');
     return base.append(headline, pub, content, meta);
 }

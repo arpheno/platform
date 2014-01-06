@@ -35,8 +35,8 @@ object { display:block; margin:0 auto; }
 .clear { clear:both; }
 
 /* EESTEC layout */
-h1 { color:#ee1f28;}
-h2 { color:#ee1f28;}
+h1{ font-size:29px; margin:0; font-weight:bold; line-height:140%; padding:0; color:#ee1f28; }
+h2{ font-size:25px; margin:0; font-weight:bold; line-height:140%; padding:0; color:#ee1f28; }
 h3 { color:#ee1f28;}
 h4 { color:#ee1f28;}
 
@@ -53,6 +53,8 @@ body {
     font-family:"Century Gothic", Verdana, Helvetica, sans-serif;
     font-size:12px; color:#555; }
 header { background:url(img/header.gif) no-repeat top; padding: 91px 0px 0px 28px;}
+header img { padding-left:28px;}
+header nav{ border-top:1px solid #ccc; border-bottom:1px solid #ccc; height:52px; padding:0 10px; }
 header nav  button {
     cursor: pointer;
     background-color:transparent;
@@ -69,48 +71,12 @@ header nav  button {
 
 main { background:url(img/side.gif) repeat-y; clear:both; padding:0 28px; }
 main section { display:none;}
+article {padding:15px;}
+article p { margin:0 0 1em 0; text-align:justify; word-wrap:break-word;}
+
 footer { background:url(img/footer.gif) no-repeat top; height:90px; padding:0 0 30px 0; }
-header nav{ border-top:1px solid #ccc; border-bottom:1px solid #ccc; height:52px; padding:0 10px; }
 
-/* post title */
-.post_title { font-size:25px; margin:0; font-weight:bold; line-height:140%; padding:0; color:#ee1f28; }
-.post_title a, .post_title a:visited { color:#ee1f28; display:inline-block; }
-.post_title a:hover { text-decoration:none; color:#2089cc; }
 
-/* post date,author,etc */
-.post_info li { display:inline; font-size:11px; margin:0 12px 0 0; color:#aaa; }
-.post_info li a, .post_info li a:visited { color:#aaa; }
-.post_info li a:hover { color:#2089cc; }
-.post_info li.write_comment { background:url(img/arrow5.gif) no-repeat left center; padding:0 0 0 9px; }
-
-/* post contents */
-/*.post_content { margin:0 0 60px 0; }*/
-.post_content p { margin:0 0 1em 0; text-align:justify; }
-
-.post_content a, .post_content a:visited { text-decoration:underline; }
-.post_content a:hover { }
-
-/* read more link */
-.post_content a.more-link, .post_content a.more-link:visited 
-{ display:block; clear:both; color:#555; margin:15px 0 0 -2px; height:32px; line-height:32px; padding:0 0 0 40px; background:url(img/arrow3.gif) no-repeat left top; text-decoration:none; }
-.post_content a.more-link:hover { color:#2089cc; background:url(img/arrow3.gif) no-repeat left bottom; text-decoration:none; }
-
-/* layout of image */
-.post img.centered,div.centered { display:block; margin:0 auto; }
-.post img.aligncenter,div.aligncenter { display:block; margin:0 auto; }
-.post img.alignright,div.alignright { margin:4px 0 15px 15px; display:inline; }
-.post img.alignleft,div.alignleft { margin:4px 15px 15px 0; display:inline; }
-
-/* table */
-.post table { margin:0 0 1em 0; }
-.post td, .post th { border:1px solid #ccc; padding:15px; }
-/* .post th { background:#eee; font-weight:bold; } */
-.post th { background:#ee1f28; font-weight:bold; color:white; text-align:left;}
-
-/* list */
-.post_content ul li { margin:0 0 0 0; line-height:150%; background:url(img/bullet1.gif) no-repeat 5px 7px; padding:0 0 0 18px; }
-.post_content ol li { margin:0 0 1em 0; line-height:150%; }
-.post_content input { margin:5px 0; }
 
 /* ----- post meta ----- */
 .post_meta { background:url(img/meta_bottom.gif) no-repeat right bottom; padding:0; width:595px; margin:0 0 60px 0; clear:boht; }

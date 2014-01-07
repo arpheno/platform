@@ -39,13 +39,21 @@ function current(which) {
     $("section#"+which).show("slow");
 }
 function Event(evnt) {
-    var base = $("<article>").addClass("workshops_exchanges type-workshops_exchanges status-publish hentry finished");
-    var headline = $("<h2></h2>").html('<a href = "#">'+evnt.name+'</a>');
-    var trainers = $("<div></div>").html("<span>"+evnt.trainers+"</span>");
-    var desc = $("<div></div>").text(evnt.description);
-    var bottom = $("<img>").attr('src', 'http://eestec-lj.org/wp-content/themes/neutral/img/line.png');
-        var br = $("<br/>");
-    return base.append(headline , trainers , desc , bottom , br);
+    var base = $("<article>");
+    base.addClass("hover");
+    var h = $("<header></header>")
+    var topic = $("<h2></h2>").text(evnt.name);
+    var meta =$("<div></div>").addClass("meta");
+    var date = $("<h3></h3>").text( evnt.date)
+    var loc = $("<h3></h3>").text( evnt.location);
+    var trainers = $("<h3></h3>").text( evnt.trainers);
+    var actions=$("<div></div>").addClass("actions");
+    var button =$("<button></button>").text("Sign up!");
+    actions.append(button);
+    meta.append(topic,date, loc, trainers);
+    h.append(meta,actions);
+    var desc = $("<p></p>").text(evnt.description);
+    return base.append(h, desc );
 }
 function Trainer(data){
     var pass=data;

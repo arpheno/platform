@@ -13,7 +13,6 @@ Tags: white, simple, three-columns, fixed-width, theme-options, threaded-comment
 a img { border:none; }
 a, a:visited { color:#ee1f28; text-decoration:none; outline:none; }
 a:hover { color:#ee1f28; text-decoration:underline; }
-p { margin:0 0 1em 0; padding:0; line-height:200%; }
 ul { list-style-type:none; margin:0 0 1em 0; padding:0; line-height:0%; }
 ul li { margin:0; padding:0; line-height:normal; zoom:1; }
 ol { margin:0 0 1em 19px; padding:0; }
@@ -37,14 +36,25 @@ object { display:block; margin:0 auto; }
 /* EESTEC layout */
 h1{ font-size:29px; margin:0; font-weight:bold; line-height:140%; padding:0; color:#ee1f28; }
 h2{ font-size:25px; margin:0; font-weight:bold; line-height:140%; padding:0; color:#ee1f28; }
-h3 { color:#ee1f28;}
-h4 { color:#ee1f28;}
 
 .anon{display:none;}
 .staffed{display:none;}
 .authed{display:none;}
 /* ----- layout -------------------------------------------------------------------------------------------------------------------------------- */
 
+button{
+    cursor: pointer;
+    padding:0 15px;
+    top:2px;
+    font-size:12px;
+    margin:0;
+    font-weight:bold;
+    position:relative;
+    border:0px;
+    line-height:48px;
+    background-color:transparent;
+    color:white;
+}
 body {
     margin:0 auto;
     width:1000px;
@@ -56,26 +66,20 @@ header { background:url(img/header.gif) no-repeat top; padding: 91px 0px 0px 28p
 header img { padding-left:28px;}
 header nav{ border-top:1px solid #ccc; border-bottom:1px solid #ccc; height:52px; padding:0 10px; }
 header nav  button {
-    cursor: pointer;
-    background-color:transparent;
-    border:0px;
-    color:white;
-    padding:0 15px;
-    line-height:48px;
-    position:relative;
-    top:2px;
-    font-size:12px;
-    margin:0;
-    font-weight:bold;
 }
 
 main { background:url(img/side.gif) repeat-y; clear:both; padding:0 28px; }
 main section { display:none;}
-article {padding:15px;}
-article p { margin:0 0 1em 0; text-align:justify; word-wrap:break-word;}
-
+article {float:left;padding:15px;width:916px;border-bottom:1px;}
+article header {padding:0;display: block; background:none;}
+article p { padding: 1px;margin:10px 0 1em 0; word-wrap:break-word;}
+.hover:hover{background-color:#F9BBBE}
+.meta{ display:block; float:left;margin-right: 30px;}
+.actions{ display:block; float:right}
+.actions button {border:1px;background-color:#f14b52; border-radius:5px;margin-left:10px}
+.meta h3 {margin:1px;text-align:center}
+article h2 { display:block;float:left;clear:both}
 footer { background:url(img/footer.gif) no-repeat top; height:90px; padding:0 0 30px 0; }
-
 
 
 /* ----- post meta ----- */

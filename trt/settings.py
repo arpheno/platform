@@ -37,16 +37,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'serve','static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'serve', 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-CONTEXT_PROCESSORS =(
-    'django.core.context_processors.csrf',
-)
+CONTEXT_PROCESSORS = ('django.core.context_processors.csrf')
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',)
@@ -98,10 +96,6 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': False,
         },
-        'account': {
-            'handlers': ['console', 'logfile'],
-            'level': 'DEBUG',
-        },
         'trt': {
             'handlers': ['console', 'logfile'],
             'level': 'DEBUG',
@@ -127,8 +121,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                 'path': os.path.join(MEDIA_ROOT, u'trainings'),
                 'URL': '%strainings/' % MEDIA_URL,
                 'uploadMaxSize': '128m',
-                'accessControl': fs_standard_access,
-                'archivers': {},
             },
             {
                 'alias': 'Resources',
@@ -136,12 +128,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                 'driver': ElfinderVolumeLocalFileSystem,
                 'path': os.path.join(MEDIA_ROOT, u'resources'),
                 'URL': '%sresources/' % MEDIA_URL,
-                'uploadAllow': ['all', ],
-                'uploadDeny': ['all', ],
-                'uploadOrder': ['deny', 'allow'],
-                'uploadMaxSize': '128m',
-                'accessControl': fs_standard_access,
-                'archivers': {},
             },
             {
                 'alias': 'New Files',
@@ -149,12 +135,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                 'driver': ElfinderVolumeLocalFileSystem,
                 'path': os.path.join(MEDIA_ROOT, u'staging'),
                 'URL': '%sstaging/' % MEDIA_URL,
-                'uploadAllow': ['all', ],
-                'uploadDeny': ['all', ],
-                'uploadOrder': ['deny', 'allow'],
-                'uploadMaxSize': '128m',
-                'accessControl': fs_standard_access,
-                'archivers': {},
             },
             {
                 'alias': 'Internal',
@@ -162,12 +142,46 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                 'driver': ElfinderVolumeLocalFileSystem,
                 'path': os.path.join(MEDIA_ROOT, u'internal'),
                 'URL': '%sinternal/' % MEDIA_URL,
-                'uploadAllow': ['all', ],
-                'uploadDeny': ['all', ],
-                'uploadOrder': ['deny', 'allow'],
-                'uploadMaxSize': '128m',
-                'accessControl': fs_standard_access,
-                'archivers': {},
+            },
+            {
+                'alias': 'Public',
+                'id': 'lfp',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'public'),
+                'URL': '%spublic/' % MEDIA_URL,
+            },
+        ]
+    },
+    'staff': {
+        'debug': False,
+        'roots': [
+            {
+                'alias': 'Trainings',
+                'id': 'lft',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'trainings'),
+                'URL': '%strainings/' % MEDIA_URL,
+            },
+            {
+                'alias': 'Resources',
+                'id': 'lfr',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'resources'),
+                'URL': '%sresources/' % MEDIA_URL,
+            },
+            {
+                'alias': 'New Files',
+                'id': 'lfs',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'staging'),
+                'URL': '%sstaging/' % MEDIA_URL,
+            },
+            {
+                'alias': 'Internal',
+                'id': 'lfi',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'internal'),
+                'URL': '%sinternal/' % MEDIA_URL,
             },
             {
                 'alias': 'Public',
@@ -177,94 +191,12 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
                     'write': True,
                 }],
                 'id': 'lfp',
-                'id': 'lfp',
                 'driver': ElfinderVolumeLocalFileSystem,
                 'path': os.path.join(MEDIA_ROOT, u'public'),
                 'URL': '%spublic/' % MEDIA_URL,
-                'uploadAllow': ['all', ],
-                'uploadDeny': ['all', ],
-                'uploadOrder': ['deny', 'allow'],
-                'uploadMaxSize': '128m',
-                'accessControl': fs_standard_access,
-                'archivers': {},
             },
-]
-},
-'staff': {
-    'debug': False,
-    'roots': [
-        {
-            'alias': 'Trainings',
-            'id': 'lft',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'trainings'),
-            'URL': '%strainings/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
-        },
-        {
-            'alias': 'Resources',
-            'id': 'lfr',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'resources'),
-            'URL': '%sresources/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
-        },
-        {
-            'alias': 'New Files',
-            'id': 'lfs',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'staging'),
-            'URL': '%sstaging/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
-        },
-        {
-            'alias': 'Internal',
-            'id': 'lfi',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'internal'),
-            'URL': '%sinternal/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
-        },
-{
-    'alias': 'Public',
-    'attributes': [{
-        'pattern': r'\.*',
-        'read': True,
-        'write': True,
-    }],
-    'id': 'lfp',
-    'driver': ElfinderVolumeLocalFileSystem,
-    'path': os.path.join(MEDIA_ROOT, u'public'),
-    'URL': '%spublic/' % MEDIA_URL,
-    'uploadAllow': ['all', ],
-    'uploadDeny': ['all', ],
-    'uploadOrder': ['deny', 'allow'],
-    'uploadMaxSize': '128m',
-    'accessControl': fs_standard_access,
-    'archivers': {},
-},
-]
-},
+        ]
+    },
 'trainer': {
     'debug': False, #optionally set debug to True for additional debug messages
     'roots': [
@@ -280,12 +212,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
             'driver': ElfinderVolumeLocalFileSystem,
             'path': os.path.join(MEDIA_ROOT, u'trainings'),
             'URL': '%strainings/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
         },
         {
             'alias': 'Resources',
@@ -299,12 +225,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
             'driver': ElfinderVolumeLocalFileSystem,
             'path': os.path.join(MEDIA_ROOT, u'resources'),
             'URL': '%sresources/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
         },
         {
             'alias': 'New Files',
@@ -312,50 +232,32 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
             'driver': ElfinderVolumeLocalFileSystem,
             'path': os.path.join(MEDIA_ROOT, u'staging'),
             'URL': '%sstaging/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
         },
-{
-    'alias': 'Internal',
-    'attributes': [{
-        'pattern': r'\.*',
-        'read': True,
-        'write': True,
-    }],
-    'id': 'lfi',
-    'driver': ElfinderVolumeLocalFileSystem,
-    'path': os.path.join(MEDIA_ROOT, u'internal'),
-    'URL': '%sinternal/' % MEDIA_URL,
-    'uploadAllow': ['all', ],
-    'uploadDeny': ['all', ],
-    'uploadOrder': ['deny', 'allow'],
-    'uploadMaxSize': '128m',
-    'accessControl': fs_standard_access,
-    'archivers': {},
-},
-{
-    'alias': 'Public',
-    'attributes': [{
-        'pattern': r'\.*',
-        'read': True,
-        'write': False,
-        'locked': True
-    }],
-    'id': 'lfp',
-    'driver': ElfinderVolumeLocalFileSystem,
-    'path': os.path.join(MEDIA_ROOT, u'public'),
-    'URL': '%spublic/' % MEDIA_URL,
-    'uploadAllow': ['all', ],
-    'uploadDeny': ['all', ],
-    'uploadOrder': ['deny', 'allow'],
-    'uploadMaxSize': '128m',
-    'accessControl': fs_standard_access,
-    'archivers': {},
-},
+        {
+            'alias': 'Internal',
+            'attributes': [{
+                'pattern': r'\.*',
+                'read': True,
+                'write': True,
+            }],
+            'id': 'lfi',
+            'driver': ElfinderVolumeLocalFileSystem,
+            'path': os.path.join(MEDIA_ROOT, u'internal'),
+            'URL': '%sinternal/' % MEDIA_URL,
+        },
+        {
+            'alias': 'Public',
+            'attributes': [{
+                'pattern': r'\.*',
+                'read': True,
+                'write': False,
+                'locked': True
+            }],
+            'id': 'lfp',
+            'driver': ElfinderVolumeLocalFileSystem,
+            'path': os.path.join(MEDIA_ROOT, u'public'),
+            'URL': '%spublic/' % MEDIA_URL,
+        },
 ]
 },
 'eestecer': {
@@ -373,12 +275,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
             'driver': ElfinderVolumeLocalFileSystem,
             'path': os.path.join(MEDIA_ROOT, u'internal'),
             'URL': '%sinternal/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
         },
         {
             'alias': 'Public',
@@ -392,12 +288,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
             'driver': ElfinderVolumeLocalFileSystem,
             'path': os.path.join(MEDIA_ROOT, u'public'),
             'URL': '%spublic/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
         },
     ]
 },
@@ -416,12 +306,6 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
             'driver': ElfinderVolumeLocalFileSystem,
             'path': os.path.join(MEDIA_ROOT, u'public'),
             'URL': '%spublic/' % MEDIA_URL,
-            'uploadAllow': ['all', ],
-            'uploadDeny': ['all', ],
-            'uploadOrder': ['deny', 'allow'],
-            'uploadMaxSize': '128m',
-            'accessControl': fs_standard_access,
-            'archivers': {},
         },
     ]#end roots
 },

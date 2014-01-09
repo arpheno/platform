@@ -36,7 +36,7 @@ function Page(url, rebuild) {
 function current(which) {
     history.pushState({"which": which}, which, "/" + which + "/");
     $("section").hide("slow");
-    $("section#"+which).show("slow");
+    $("section."+which).show("slow");
 }
 function Event(evnt) {
     var base = $("<article>");
@@ -74,8 +74,10 @@ function Trainer(data){
     image.src=data.im;
     var meta = $("<div></div>").addClass("comment");
     var il = $("<ul></ul>")
+    var excludes=["pk"];
     $.each(data.meta, function (key, val) {
-        il.append($("<li></li>").html(key + ": "+ val));
+        if($.inArray(key,excludes)==-1 && val!="None" &&val)
+            il.append($("<li></li>").html(key + ": "+ val));
     });
     base.click(function(){
         buildtrainer(pass);
@@ -92,43 +94,65 @@ function New(entry) {
     return base.append(headline, pub, content, meta);
 }
 function buildtrainer(data) {
-    $("section#profile").empty();
-    var base=$("<li></li>");
+    $("section.profile").empty();
+    var im = $("<div></div>");
+    im.addClass("meta");
     var image=new Image();
     image.src=data.im;
+    im.append(image);
     var meta = $("<div></div>");
+    meta.addClass("meta");
+    meta.append($("<h1></h1>").text(data.meta.Name));
+    var left = $("<div></div>").addClass("left");
     var il = $("<ul></ul>");
+    var excludes=["pk","Name"]
     $.each(data.meta, function (key, val) {
-        il.append($("<li></li>").html(key + ": "+ val));
+        if($.inArray(key,excludes)==-1 && val!="None" &&val)
+            il.append($("<li></li>").html("<h3>"+key+"</h3>"));
     });
-    $("section#profile").append(base.append(image, il));
+    left.append(il);
+    var right = $("<div></div>").addClass("left");
+    il = $("<ul></ul>");
+    $.each(data.meta, function (key, val) {
+        if($.inArray(key,excludes)==-1 && val!="None" &&val)
+            il.append($("<li></li>").html(val));
+    });
+    right.append(il);
+    meta.append(left,right);
+    var trainings = $("<div></div>");
+    var evnts = Events.container.filter(function(ob){return $.inArray(data.meta.pk*1,ob.fields.trainers)>-1});
+    $.each(evnts, function (key, val) {
+        trainings.append(new Event(val.fields));
+    });
+
+    $("section.profile").append(im, meta,trainings);
 }
 function buildpool() {
-    $("section#pool").html('<h2 class="post_title">Trainers</h2><ul></ul>');
+    $("section.pool").html('<h2 class="post_title">Trainers</h2><ul></ul>');
     $.each(Pool.container, function (key, val) {
         if(val.im=="None"){;
         }else{
-            $("section#pool ul").append(new Trainer(val));
+            $("section.pool ul").append(new Trainer(val));
         }
     });
 }
 function buildnews() {
-    $("section#news").empty();
+    $("section.news").empty();
     $.each(News.container, function (key, val) {
-        $("section#news").append(new New(val.fields));
+        $("section.news").append(new New(val.fields));
     });
 }
 function buildevents(){
-    $("section#training").empty();
-    $("section#operational").empty();
+    $("section.training").empty();
+    $("section.operational").empty();
     $.each( Events.container, function( key, val ) {
-        $("section#"+val.fields.type).append(new Event(val.fields));
+        $("section."+val.fields.type).append(new Event(val.fields));
     });
 }
 function linkbutton(name){
-    $("button#"+name).click(function(){
+    $("button."+name).click(function(){
         current(name);
-        $("section#"+name).load("/"+name);
+        $("section."+name).load("/"+name);
         return false;
     });
 };
@@ -138,7 +162,7 @@ $(function () {
         if (event.state!= null){
             console.log('popstate fired!');
             $("section").hide();
-            $("section#"+event.state['which']).show();
+            $("section."+event.state['which']).show();
         }});
         $(document).mouseup(function (e){
             e.preventDefault();
@@ -216,29 +240,29 @@ $(function () {
 
         linkbutton("materials");
         linkbutton("account");
-        $("button#contact").click(function(){
+        $("button.contact").click(function(){
             current("contact"); return false
         });
-        $("button#pool").click(function () {
+        $("button.pool").click(function () {
             current("pool");
             Events.fetch();
             return false;
-        });$("button#operational").click(function () {
+        });$("button.operational").click(function () {
             current("operational");
             Events.fetch();
             return false;
         });
-        $("button#training").click(function () {
+        $("button.training").click(function () {
             current("training");
             Events.fetch();
             return false;
         });
-        $("button#logout").click(function () {
+        $("button.logout").click(function () {
             current("news");
             $("body").load("/account/logout/")
             News.fetch();
             return false;
-        }); $("button#news").click(function () {
+        }); $("button.news").click(function () {
             current("news");
             News.fetch();
             return false;

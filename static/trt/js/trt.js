@@ -44,7 +44,9 @@ function Event(evnt) {
     var h = $("<header></header>")
     var topic = $("<h2></h2>").text(evnt.name);
     var meta =$("<div></div>").addClass("meta");
-    var date = $("<h3></h3>").text( evnt.date)
+    var a = new Date(Date.parse(evnt.date))
+    var date = $.datepicker.formatDate('DD dd.mm.yy', a);
+    var date = $("<h3></h3>").text( date);
     var loc = $("<h3></h3>").text( evnt.location);
     var trainers = $("<h3></h3>")
     $.each(evnt.trainers, function (key, val) {
@@ -52,11 +54,14 @@ function Event(evnt) {
         trainer = trainer[0];
         trainers.append($("<a></a>")).text(trainer.meta.Name)
     });
-    console.log(trainers);
-    console.log(loc);
+    var now=new Date();
     var actions=$("<div></div>").addClass("actions");
-    var button =$("<button></button>").text("Sign up!");
-    actions.append(button);
+    console.log(now);
+    console.log(a);
+    if(now<a){
+        var button =$("<button></button>").text("Sign up!");
+        actions.append(button);
+    }
     meta.append(topic,date, loc, trainers);
     h.append(meta,actions);
     var desc = $("<p></p>").text(evnt.description);

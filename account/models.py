@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+class Language(models.Model):
+    language = models.CharField(max_length=15)
+
+
 class TrtUser(AbstractUser):
     registration = models.CharField(max_length=100, blank=True, null=True)
     lc = models.CharField(max_length=50, blank=True, null=True)

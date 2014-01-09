@@ -1,4 +1,24 @@
-<form action="/account/"enctype="multipart/form-data" method="post">{% csrf_token %}
-    {{ form.as_p }}
+<form action="/account/" enctype="multipart/form-data" method="post">{% csrf_token %}
+    <h2>Personal Information</h2>
+    <fieldset>
+        <h3>Name</h3>
+        <input id="id_first_name" maxlength="30" name="first_name" type="text" />
+        <input id="id_last_name" maxlength="30" name="last_name" type="text" value="" />
+        <h3>Date of Birth</h3>
+        <input id="id_born_on" name="born_on" type="text" />
+        <h3>Languages</h3>
+        <input type="text" id="id_languages" name="languages" />
+    </fieldset>
+    <p><label for="id_lc">Local Committee:</label> <input id="id_lc" maxlength="50" name="lc" type="text" /></p>
+    <p><label for="id_trainings_delivered">Trainings delivered:</label> <input id="id_trainings_delivered" name="trainings_delivered" type="number" /></p>
+    <p><label for="id_profile_picture">Profile picture:</label> Currently: <a href="/media/users/4819512041_43a2c287fe.jpg">users/4819512041_43a2c287fe.jpg</a> <input id="profile_picture-clear_id" name="profile_picture-clear" type="checkbox" /> <label for="profile_picture-clear_id">Clear</label><br />Change: <input id="id_profile_picture" name="profile_picture" type="file" /></p>
+    <p><label for="id_born_on">Date of Birth:</label> </p>
+    <p><label for="id_join_date">Member of eestec since:</label> <input id="id_join_date" name="join_date" type="text" /></p>
+    <p><label for="id_languages">Which languages do you speak?</label> <textarea cols="40" id="id_languages" name="languages" rows="10">
+    </textarea></p>
+    <p><label for="id_preferred_topics">What are your favourite trainings?</label> <textarea cols="40" id="id_preferred_topics" name="preferred_topics" rows="10">
+    </textarea></p>
+    <p><label for="id_contact">What are the best ways to contact you?</label> <textarea cols="40" id="id_contact" name="contact" rows="10">
+    </textarea></p>
     <input type="submit" value="Send message" />
 </form>

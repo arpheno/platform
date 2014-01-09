@@ -46,7 +46,14 @@ function Event(evnt) {
     var meta =$("<div></div>").addClass("meta");
     var date = $("<h3></h3>").text( evnt.date)
     var loc = $("<h3></h3>").text( evnt.location);
-    var trainers = $("<h3></h3>").text( evnt.trainers);
+    var trainers = $("<h3></h3>")
+    $.each(evnt.trainers, function (key, val) {
+        var trainer = Pool.container.filter(function(ob){return ob.meta.pk==val});
+        trainer = trainer[0];
+        trainers.append($("<a></a>")).text(trainer.meta.Name)
+    });
+    console.log(trainers);
+    console.log(loc);
     var actions=$("<div></div>").addClass("actions");
     var button =$("<button></button>").text("Sign up!");
     actions.append(button);

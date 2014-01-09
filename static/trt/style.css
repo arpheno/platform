@@ -75,8 +75,8 @@ article header {padding:0;display: block; background:none;}
 article p { padding: 1px;margin:10px 0 1em 0; word-wrap:break-word;}
 .hover:hover{background-color:#F9BBBE}
 .meta{ display:block; float:left;margin-right: 30px;}
-.actions{ display:block; float:right}
-.actions button {border:1px;background-color:#f14b52; border-radius:5px;margin-left:10px}
+.actions{ display:block; float:right;height:86px;}
+.actions button {border:1px;background-color:#f14b52; border-radius:5px;margin-left:10px;margin-top: 19px;}
 .meta h3 {margin:1px;text-align:center}
 article h2 { display:block;float:left;clear:both}
 footer { background:url(img/footer.gif) no-repeat top; height:90px; padding:0 0 30px 0; }

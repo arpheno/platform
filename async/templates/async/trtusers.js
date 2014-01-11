@@ -4,7 +4,7 @@
         "pk":"{{ trainer.pk }}",
         "first_name": "{{ trainer.first_name }}",
         "last_name": "{{ trainer.last_name }}",
-        "im":"{{ im.url }}",
+        "im": "{{ im.url }}",
         "general": {
             "date_of_birth": "{{ trainer.date_of_birth }}"
         },

@@ -127,7 +127,6 @@ class UserProfile(UpdateView):
         instance = User.objects.get(username=self.request.user)
         form = AccountForm(request.POST,request.FILES, instance=instance)
         form.save()
-        import pdb; pdb.set_trace()
         return redirect('/')
 
     def get(self, request, **kwargs):

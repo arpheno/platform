@@ -78,13 +78,20 @@ article p { padding: 1px;margin:10px 0 1em 0; word-wrap:break-word;}
 .actions{ display:block; float:right;height:86px;}
 .actions button {border:1px;background-color:#f14b52; border-radius:5px;margin-left:10px;margin-top: 19px;}
 .meta h3 {margin:1px;text-align:center}
+.meta h4 {float:left;clear:both;}
+.meta input{border-style:dotted;border-color:black;width:200px}
+#first_name{font-size:29px; font-weight:bold; line-height:140%; padding:0; color:#ee1f28;border-right:None;margin-right:2px}
+#last_name{font-size:29px; font-weight:bold; line-height:140%; padding:0; color:#ee1f28;border-left:None}
 .meta h2 { display:block;clear:both;text-align:center;}
+.meta h1 { display:block;float:left;}
 footer { background:url(img/footer.gif) no-repeat top; height:90px; padding:0 0 30px 0; }
 section.profile{ padding:35px; }
-.left { float:left;margin-right:35px}
+section.account{ padding:35px; }
+.left { float:left;margin-right:35px;}
+.left li { margin-bottom:4px;}
 
 /* ----- post meta ----- */
-.post_meta { background:url(img/meta_bottom.gif) no-repeat right bottom; padding:0; width:595px; margin:0 0 60px 0; clear:boht; }
+.post_meta { background:url(img/meta_bottom.gif) no-repeat right bottom; padding:0; width:595px; margin:0 0 60px 0; clear:both; }
 .post_meta ul { background:url(img/meta_top.gif) no-repeat right top; padding:12px 10px 12px 25px; margin:0; line-height:0%; }
 .post_meta li { display:block; font-size:11px; line-height:140%; margin:0; }
 .post_category { float:left; width:410px; background:url(img/category_icon.gif) no-repeat 4px 2px; padding:0 0 0 22px; }

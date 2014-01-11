@@ -222,26 +222,29 @@
         "fields": {
             "name":"Vietnamese"
         }
-    }
+    },
     {
         "model": "async.LastModified",
-        "pk":1
+        "pk":1,
         "fields": {
-            "name":"Trainers"
+            "name":"Trainers",
+            "date":"2013-03-16T17:41:28+00:00"
         }
-    }
+    },
     {
         "model": "async.LastModified",
-        "pk":2
+        "pk":2,
         "fields": {
-            "name":"Event"
+            "name":"Event",
+            "date":"2013-03-16T17:41:28+00:00"
         }
-    }
+    },
     {
         "model": "async.LastModified",
-        "pk":3
+        "pk":3,
         "fields": {
-            "name":"News"
+            "name":"News",
+            "date":"2013-03-16T17:41:28+00:00"
         }
     }
 

@@ -3,7 +3,7 @@ SECRET_KEY = '@9n+09e2kdo*3l2fhhbg68i^+b95su%8($te#q6339&amp;7i+3-z4'
 from elfinder.utils.accesscontrol import fs_standard_access
 from elfinder.volumes.filesystem import ElfinderVolumeLocalFileSystem
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DEBUG = True
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 ROOT_URLCONF = 'trt.urls'
 WSGI_APPLICATION = 'trt.wsgi.application'

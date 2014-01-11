@@ -89,36 +89,25 @@ def auth(request):
                 data['staff'] = True
             else:
                 data['staff'] = False
-                data['status'] = 'success'
-                data = json.dumps(data)
-                return HttpResponse(data, content_type="application/json")
+            data['status'] = 'success'
+            data['pk'] = user.pk
+            data = json.dumps(data)
+            return HttpResponse(data, content_type="application/json")
         else:
             data['status'] = 'inactive'
             return HttpResponse(json.dumps(data), content_type="application/json")
     else:
         data['status'] = 'invalid'
         return HttpResponse(json.dumps(data), content_type="application/json")
+    data['status'] = 'wtf'
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 class AccountForm(ModelForm):
     class Meta:
         model = User
         fields = ['first_name',
-                  'last_name',
-                  'lc',
-                  'trainings_delivered',
-                  'profile_picture',
-                  'born_on',
-                  'join_date',
-                  'languages',
-                  'preferred_topics',
-                  'contact', ]
-        labels = {'lc': 'Local Committee',
-                  'born_on': 'Date of Birth',
-                  'join_date': 'Member of eestec since',
-                  'languages': 'Which languages do you speak?',
-                  'preferred_topics': 'What are your favourite trainings?',
-                  'contact': 'What are the best ways to contact you?'}
+                  'last_name']
 
     def __init__(self, *args, **kwargs):
         super(AccountForm, self).__init__(*args, **kwargs)

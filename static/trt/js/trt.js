@@ -103,7 +103,7 @@ function buildself() {
     var f=$("<form>");
     f.attr("enctype","multipart/form-data");
     f.attr("method","post");
-    f.attr("action","/account/");
+    f.attr("action","/account/update/");
     var csrf=$("<input>").attr('type','hidden');
     csrf.val($("#signup_menu input")[0].value);
     csrf.attr("name","csrfmiddlewaretoken")
@@ -188,7 +188,7 @@ function buildself() {
     /* List of Trainings delivered by User */
     // TODO make it possible to add trainings here
     var trainings = $("<div></div>");
-    var evnts = Events.container.filter(function(ob){return $.inArray(data.meta.pk*1,ob.fields.trainers)>-1});
+    var evnts = Events.container.filter(function(ob){return $.inArray(data.pk*1,ob.fields.trainers)>-1});
     $.each(evnts, function (key, val) {
         trainings.append(new Event(val.fields));
     });
@@ -228,6 +228,7 @@ function buildtrainer(data) {
                 specifier.css("text-align","left");
                 specifier.text(i);
                 var content = $("<h3></h3>");
+                content.text(v);
                 specifier = $("<td></td>").append(specifier);
                 specifier.css("width","200px");
                 content = $("<td></td>").append(content);

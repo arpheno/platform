@@ -30,6 +30,9 @@
                 {% if target == "materials" %}
                     $("section#materials").load("/materials");<!-- this is a dirty dirty hack-->
                 {% endif %}
+                {% if user.is_authenticated %}
+                    CURRENT_USER = {{ user.pk }}
+                {% endif %}
             });
         </script>
     </head>

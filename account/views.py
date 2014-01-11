@@ -106,8 +106,11 @@ def auth(request):
 class AccountForm(ModelForm):
     class Meta:
         model = User
-        fields = ['first_name',
-                  'last_name']
+        fields = ['first_name', 'last_name',
+                 'lc', 'joined_eestec_on',
+                  'trainings_delivered', 'preferred_topics',
+                  'mobile','hangout', 'facebook', 'skype', 'linkedin',
+                  'profile_picture']
 
     def __init__(self, *args, **kwargs):
         super(AccountForm, self).__init__(*args, **kwargs)
@@ -124,6 +127,7 @@ class UserProfile(UpdateView):
         instance = User.objects.get(username=self.request.user)
         form = AccountForm(request.POST,request.FILES, instance=instance)
         form.save()
+        import pdb; pdb.set_trace()
         return redirect('/')
 
     def get(self, request, **kwargs):

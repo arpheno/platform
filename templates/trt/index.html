@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{% static 'elfinder/css/elfinder.min.css' %}">
         <link rel="stylesheet" href="{% static 'trt/loader.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'trt/style.css' %}" />
-        <script src="{% static 'trt/js/jquery.min.js' %}" ></script>
+        <script src="{% static 'trt/js/jquery-1.10.2.min.js' %}" ></script>
         <script src="{% static 'trt/js/prefixfree.min.js' %}" ></script>
         <script src="{% static 'trt/js/trt.js' %}" ></script>
         <script async src="{% static 'trt/js/jquery-ui.min.js' %}"></script>
@@ -26,8 +26,15 @@
         </style>
         <script>
             $(function () {
+                {% if target == "profile" %}
+                    $("section").hide();
+                    $("section.profile").show();
+                    history.pushState({"which": "profile"}, "profile", "/profile/{{first_name}}/{{last_name}}/");
+                    $("section.{{ target }}").load("/{{ target }}/{{ first_name }}/{{ last_name }}/");
+                {% else %}
                 current("{{ target }}")
-                $("section.{{ target }}").load("/{{ target }}");
+                    $("section.{{ target }}").load("/{{ target }}/");
+                {% endif %}
             });
         </script>
     </head>
@@ -45,6 +52,7 @@
             <section class="materials"></section>
             <section class="operational"></section>
             <section class="pool"></section>
+            <section class="admin"></section>
             <section class="training"></section>
             <section class="profile"></section>
         </main>

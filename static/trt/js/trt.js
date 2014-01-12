@@ -118,6 +118,7 @@ $(function () {
         News = new Page("news");
         linkbutton("materials");
         linkbutton("account");
+        linkbutton("admin");
         Training.fetch();
         Pool.fetch();
         News.fetch();

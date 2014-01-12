@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from models import TrtUser as User
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DetailView
 from django.contrib.auth.models import Group
 from django.forms import ModelForm
 import json
@@ -10,6 +10,7 @@ import random
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.db import IntegrityError
+from django.shortcuts import render
 import logging
 logger = logging.getLogger('trt')
 
@@ -120,7 +121,6 @@ class AccountForm(ModelForm):
             f.queryset = f.queryset.select_related('content_type')
 
 
-from django.shortcuts import render
 
 
 class TrainerList(ListView):
@@ -137,6 +137,41 @@ class TrainerList(ListView):
         result['Last-Modified'] = last.date_joined.strftime(
             "%a %B %d %H:%M:%S %Y %z")
         return result
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+from django.shortcuts import get_object_or_404
+from training.models import Event
+
+
+class TrainerProfile(DetailView):
+    model = User
+
+    def get(self, request, *args, **kwargs):
+        if request.is_ajax():
+            return super(TrainerProfile, self).get(request,
+                                                   *args, **kwargs)
+        return render(request, 'trt/index.html', {
+            "target": "profile",
+            "first_name": self.args[0],
+            "last_name": self.args[1]
+        })
+
+    def get_context_data(self, **kwargs):
+        context = super(TrainerProfile, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        events = Event.objects
+        context['trainings_list'] = events.filter(
+            trainers=self.object)
+        return context
+
+    def get_object(self):
+        return get_object_or_404(
+            User,
+            first_name=self.args[0],
+            last_name=self.args[1]
+        )
 
 
 class UserProfile(UpdateView):

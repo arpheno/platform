@@ -222,30 +222,5 @@
         "fields": {
             "name":"Vietnamese"
         }
-    },
-    {
-        "model": "async.LastModified",
-        "pk":1,
-        "fields": {
-            "name":"trainers",
-            "date":"2013-03-16T17:41:28+00:00"
-        }
-    },
-    {
-        "model": "async.LastModified",
-        "pk":2,
-        "fields": {
-            "name":"training",
-            "date":"2013-03-16T17:41:28+00:00"
-        }
-    },
-    {
-        "model": "async.LastModified",
-        "pk":3,
-        "fields": {
-            "name":"news",
-            "date":"2013-03-16T17:41:28+00:00"
-        }
     }
-
 ]

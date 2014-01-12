@@ -1,0 +1,18 @@
+{% for training in object_list %}
+<article class="hover">
+    <header>
+        <div class="meta">
+            <h2>{{ training.name }}</h2>
+            <h3>{{ training.date }}</h3>
+            <h3>{{ training.location }}</h3>
+            <h3>{% for trainer in training.trainers.all %}{{ trainer.first_name }}{% endfor %}</h3>
+        </div>
+
+        <div class="actions">
+            <button>Sign up!</button>
+        </div>
+    </header>
+
+    <p>{{ training.description }}</p>
+</article>
+{% endfor %}

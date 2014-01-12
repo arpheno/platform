@@ -3,8 +3,6 @@ from history.models import Event
 from news.models import Entry
 from django.core import serializers
 from models import LastModified
-from email import utils
-import time
 
 def history(request):
     events = Event.objects.order_by('date')

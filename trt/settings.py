@@ -18,7 +18,7 @@ INSTALLED_APPS = (
     'news',
     'async',
     'materials',
-    'history',
+    'training',
     'account',
     'elfinder',
     'gunicorn',

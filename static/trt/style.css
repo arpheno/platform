@@ -80,8 +80,8 @@ article p { padding: 1px;margin:10px 0 1em 0; word-wrap:break-word;}
 .meta h3 {margin:1px;text-align:center}
 .meta h4 {float:left;clear:both;}
 .meta input{border-style:dotted;border-color:black;width:200px}
-#first_name{font-size:29px; font-weight:bold; line-height:140%; padding:0; color:#ee1f28;border-right:None;margin-right:2px}
-#last_name{font-size:29px; font-weight:bold; line-height:140%; padding:0; color:#ee1f28;border-left:None}
+#id_first_name{font-size:29px; font-weight:bold; line-height:140%; padding:0; color:#ee1f28;border-right:None;margin-right:2px}
+#id_last_name{font-size:29px; font-weight:bold; line-height:140%; padding:0; color:#ee1f28;border-left:None}
 .meta h2 { display:block;clear:both;text-align:center;}
 .meta h1 { display:block;float:left;}
 footer { background:url(img/footer.gif) no-repeat top; height:90px; padding:0 0 30px 0; }

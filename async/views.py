@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from history.models import Event
+from training.models import Event
 from news.models import Entry
 from account.models import TrtUser as User
 from django.core import serializers
@@ -33,10 +33,10 @@ def history(request):
 
 
 def news(request):
-    entries = Entry.objects.order_by('pub_date')
-    data = serializers.serialize("json", entries)
-    la = LastModified.objects.get(name="News")
-    lm = fdate(la.date)
+    entries = Entry.objects.order_by('pub_date') # Get from DATABSE
+    data = serializers.serialize("json", entries) # USE ENCODER TO JSON
+    la = LastModified.objects.get(name="News") # Information from DB
+    lm = fdate(la.date) # Important for AJAX
     result = HttpResponse(data, content_type="application/json")
     result['Last-Modified'] = lm
     return result

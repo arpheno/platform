@@ -27,33 +27,11 @@
         <script>
             $(function () {
                 current("{{ target }}")
-                {% if target == "materials" %}
-                    $("section#materials").load("/materials");<!-- this is a dirty dirty hack-->
-                {% endif %}
-                {% if user.is_authenticated %}
-                    CURRENT_USER = {{ user.pk }}
-                {% endif %}
+                $("section.{{ target }}").load("/{{ target }}");
             });
         </script>
     </head>
     <body>
-        <div id="loader">
-            <div class="shadow"></div>
-            <div id="portalcube">
-                <div class="squares">
-                    <div class="box"></div>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
-                <div class="circle">
-                    <div class="heart"></div>
-                </div>
-            </div>
-        </div>
         <header>
             <img src="{% static "trt/img/banner.png" %}" alt="EESTEC International" title="EESTEC International" />
             <nav>

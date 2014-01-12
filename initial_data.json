@@ -227,7 +227,7 @@
         "model": "async.LastModified",
         "pk":1,
         "fields": {
-            "name":"Trainers",
+            "name":"trainers",
             "date":"2013-03-16T17:41:28+00:00"
         }
     },
@@ -235,7 +235,7 @@
         "model": "async.LastModified",
         "pk":2,
         "fields": {
-            "name":"Event",
+            "name":"training",
             "date":"2013-03-16T17:41:28+00:00"
         }
     },
@@ -243,7 +243,7 @@
         "model": "async.LastModified",
         "pk":3,
         "fields": {
-            "name":"News",
+            "name":"news",
             "date":"2013-03-16T17:41:28+00:00"
         }
     }

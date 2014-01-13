@@ -35,7 +35,7 @@ function Page(which) {
             console.log(self.which + " is out of date, getting new Data.");
             $("section."+self.which).load("/" + which + "/")
             console.log("Got new data for "+self.which);
-            self.lastModified = self.newModified;
+                self.lastModified = self.newModified;
         }
     }
 }

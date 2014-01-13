@@ -5,6 +5,9 @@ from django.contrib.auth.models import AbstractUser
 class Language(models.Model):
     name = models.CharField(max_length=15)
 
+    def __unicode__(self):
+        return self.name
+
 
 class TrtUser(AbstractUser):
     #Platform

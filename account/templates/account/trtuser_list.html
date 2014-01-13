@@ -10,7 +10,7 @@
             <li>{{ trainer.first_name }}{{ trainer.last_name }}</li>
             <li>LC: {{ trainer.lc }}</li>
             <li>Trainings delivered: {{ trainer.trainings_delivered }}</li>
-            <li>Speaks {{ trainer.languages }}</li>
+            <li>Speaks {% for language in trainer.languages.all %}{{ language }} {% endfor %}</li>
             <li>Contact: {{ trainer.contact }}</li>
             <li>Favourite Trainings {{ trainer.preferred_topics }}</li>
 

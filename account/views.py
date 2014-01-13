@@ -88,9 +88,9 @@ def auth(request):
                 data['staff'] = True
             else:
                 data['staff'] = False
-                data['status'] = 'success'
-                data = json.dumps(data)
-                return HttpResponse(data, content_type="application/json")
+            data['status'] = 'success'
+            data = json.dumps(data)
+            return HttpResponse(data, content_type="application/json")
         else:
             data['status'] = 'inactive'
             return HttpResponse(json.dumps(data), content_type="application/json")
@@ -101,6 +101,13 @@ def auth(request):
 
 from django.forms import widgets
 from django.views.generic.list import ListView
+from django.forms.widgets import Input
+
+
+class HTML5Input(Input):
+    def __init__(self, type, attrs):
+        self.input_type = type
+        super(HTML5Input, self).__init__(attrs)
 
 
 class AccountForm(ModelForm):
@@ -112,15 +119,18 @@ class AccountForm(ModelForm):
                   'mobile', 'hangout', 'facebook', 'skype', 'linkedin',
                   'profile_picture']
         widgets = {'profile_picture': widgets.FileInput,
-                   'preferred_topics': widgets.TextInput}
+                   'preferred_topics': widgets.TextInput,
+                   'born_on': HTML5Input(type='date', attrs={}),
+                   'joined_eestec_on': HTML5Input(type='date', attrs={}),
+                   'mobile': HTML5Input(type='tel', attrs={}),
+                   'hangout': HTML5Input(type='email', attrs={})
+                   }
 
     def __init__(self, *args, **kwargs):
         super(AccountForm, self).__init__(*args, **kwargs)
         f = self.fields.get('user_permissions', None)
         if f is not None:
             f.queryset = f.queryset.select_related('content_type')
-
-
 
 
 class TrainerList(ListView):
@@ -143,7 +153,6 @@ class TrainerList(ListView):
 
 from django.shortcuts import get_object_or_404
 from training.models import Event
-
 
 class TrainerProfile(DetailView):
     model = User
@@ -172,6 +181,7 @@ class TrainerProfile(DetailView):
             first_name=self.args[0],
             last_name=self.args[1]
         )
+
 
 
 class UserProfile(UpdateView):

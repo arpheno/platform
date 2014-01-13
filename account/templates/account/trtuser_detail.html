@@ -15,12 +15,23 @@
             <tbody>
                 <tr>
                     <td style="width: 200px;">
-                        <label>
+                        <h3 style="text-align: left;">
                             Date of birth
-                        </label>
+                            </h3>
                     </td>
 
                     <td>{{ object.born_on }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 200px;">
+                        <h3 style="text-align: left;">
+                            Fluent in
+                            </h3>
+                    </td>
+
+                    <td>
+                        {% for language in object.languages.all %}{{ language }} {% endfor %}
+                    </td>
                 </tr>
             </tbody>
         </table>

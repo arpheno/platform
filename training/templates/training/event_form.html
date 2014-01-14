@@ -1,0 +1,15 @@
+{% if user.is_authenticated %}
+<form action="/training/create/" method="post">
+    {% csrf_token %}
+    <div style="inline-block;float:left">
+       {{ form.name }}</br>
+        {{ form.date }}</br>
+     {{ form.location }}
+</div>
+    <div style="inline-block;float:left">
+    {{ form.trainers }}
+</div>
+    {{ form.description }}
+    <input type="submit" value="Create">
+</form>
+{% endif %}

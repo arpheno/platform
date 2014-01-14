@@ -16,7 +16,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news',
-    'async',
     'materials',
     'training',
     'account',
@@ -197,118 +196,121 @@ ELFINDER_CONNECTOR_OPTION_SETS = {
             },
         ]
     },
-'trainer': {
-    'debug': False, #optionally set debug to True for additional debug messages
-    'roots': [
-        {
-            'alias': 'Trainings',
-            'attributes': [{
-                'pattern': r'.*',
-                'read': True,
-                'write': False,
-                'locked': True
-            }],
-            'id': 'lft',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'trainings'),
-            'URL': '%strainings/' % MEDIA_URL,
+    'trainer': {
+        # optionally set debug to True for additional debug messages
+        'debug': False,
+        'roots': [
+            {
+                'alias': 'Trainings',
+                'attributes': [{
+                    'pattern': r'.*',
+                    'read': True,
+                    'write': False,
+                    'locked': True
+                    }],
+                'id': 'lft',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'trainings'),
+                'URL': '%strainings/' % MEDIA_URL,
+                },
+            {
+                'alias': 'Resources',
+                'attributes': [{
+                    'pattern': r',*',
+                    'read': True,
+                    'write': False,
+                    'locked': True
+                    }],
+                'id': 'lfr',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'resources'),
+                'URL': '%sresources/' % MEDIA_URL,
+                },
+            {
+                'alias': 'New Files',
+                'id': 'lfs',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'staging'),
+                'URL': '%sstaging/' % MEDIA_URL,
+                },
+            {
+                'alias': 'Internal',
+                'attributes': [{
+                    'pattern': r'\.*',
+                    'read': True,
+                    'write': True,
+                    }],
+                'id': 'lfi',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'internal'),
+                'URL': '%sinternal/' % MEDIA_URL,
+                },
+            {
+                'alias': 'Public',
+                'attributes': [{
+                    'pattern': r'\.*',
+                    'read': True,
+                    'write': False,
+                    'locked': True
+                    }],
+                'id': 'lfp',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'public'),
+                'URL': '%spublic/' % MEDIA_URL,
+                },
+        ]
         },
-        {
-            'alias': 'Resources',
-            'attributes': [{
-                'pattern': r',*',
-                'read': True,
-                'write': False,
-                'locked': True
-            }],
-            'id': 'lfr',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'resources'),
-            'URL': '%sresources/' % MEDIA_URL,
+    'eestecer': {
+        # optionally set debug to True for additional debug messages
+        'debug': False,
+        'roots': [
+            {
+                'alias': 'Internal',
+                'attributes': [{
+                    'pattern': r'\.*',
+                    'read': True,
+                    'write': False,
+                    'locked': True
+                    }],
+                'id': 'lfi',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'internal'),
+                'URL': '%sinternal/' % MEDIA_URL,
+                },
+            {
+                'alias': 'Public',
+                'attributes': [{
+                    'pattern': r'\.*',
+                    'read': True,
+                    'write': False,
+                    'locked': True
+                    }],
+                'id': 'lfp',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'public'),
+                'URL': '%spublic/' % MEDIA_URL,
+                },
+            ]
         },
-        {
-            'alias': 'New Files',
-            'id': 'lfs',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'staging'),
-            'URL': '%sstaging/' % MEDIA_URL,
+    'anon': {
+        # optionally set debug to True for additional debug messages
+        'debug': False,
+        'roots': [
+            {
+                'alias': 'Public',
+                'attributes': [{
+                    'pattern': r'\.*',
+                    'read': True,
+                    'write': False,
+                    'locked': True
+                    }],
+                'id': 'lfp',
+                'driver': ElfinderVolumeLocalFileSystem,
+                'path': os.path.join(MEDIA_ROOT, u'public'),
+                'URL': '%spublic/' % MEDIA_URL,
+                },
+            ]  # end roots
         },
-        {
-            'alias': 'Internal',
-            'attributes': [{
-                'pattern': r'\.*',
-                'read': True,
-                'write': True,
-            }],
-            'id': 'lfi',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'internal'),
-            'URL': '%sinternal/' % MEDIA_URL,
-        },
-        {
-            'alias': 'Public',
-            'attributes': [{
-                'pattern': r'\.*',
-                'read': True,
-                'write': False,
-                'locked': True
-            }],
-            'id': 'lfp',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'public'),
-            'URL': '%spublic/' % MEDIA_URL,
-        },
-]
-},
-'eestecer': {
-    'debug': False,  #optionally set debug to True for additional debug messages
-    'roots': [
-        {
-            'alias': 'Internal',
-            'attributes': [{
-                'pattern': r'\.*',
-                'read': True,
-                'write': False,
-                'locked': True
-            }],
-            'id': 'lfi',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'internal'),
-            'URL': '%sinternal/' % MEDIA_URL,
-        },
-        {
-            'alias': 'Public',
-            'attributes': [{
-                'pattern': r'\.*',
-                'read': True,
-                'write': False,
-                'locked': True
-            }],
-            'id': 'lfp',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'public'),
-            'URL': '%spublic/' % MEDIA_URL,
-        },
-    ]
-},
-'anon': {
-    'debug': False,  #optionally set debug to True for additional debug messages
-    'roots': [
-        {
-            'alias': 'Public',
-            'attributes': [{
-                'pattern': r'\.*',
-                'read': True,
-                'write': False,
-                'locked': True
-            }],
-            'id': 'lfp',
-            'driver': ElfinderVolumeLocalFileSystem,
-            'path': os.path.join(MEDIA_ROOT, u'public'),
-            'URL': '%spublic/' % MEDIA_URL,
-        },
-    ]#end roots
-},
 }
 
 DATABASES = {
@@ -317,4 +319,3 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-

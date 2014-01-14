@@ -6,7 +6,7 @@ function current(which) {
 function linkbutton(name){
     $("button."+name).click(function(){
         current(name);
-        $("section."+name).load("/"+name);
+        $("section."+name).load("/"+name+"/");
         return false;
     });
 };

@@ -47,9 +47,11 @@ class TrainingList(ListView):
             return super(TrainingList, self).get(request, **kwargs)
         return render(request, 'trt/index.html', {"target": "training"})
 
+# Handle AJAX properly
     def head(self, request, **kwargs):
         last = self.get_queryset().latest('date')
         result = HttpResponse()
         result['Last-Modified'] = last.date.strftime(
             "%a %B %d %H:%M:%S %Y %z")
         return result
+
